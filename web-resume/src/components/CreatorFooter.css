@@ -1,0 +1,28 @@
+.creator-item .creator-footer {
+    margin-top: auto;
+    padding-bottom: 20px;
+}
+
+.save-button, .next-button {
+    border-radius: 7px;
+    font-size: clamp(0.7rem, 3vw, 0.8vw);
+    height: 50px;
+    padding: 5px 15px;
+}
+
+.save-button {
+    background-color: #f2ebf8;
+    border-color: #e1dcf8;
+    color: brown;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.next-button {
+    background-color: #75a08b;
+    border-color: #5e94a0;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}

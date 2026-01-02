@@ -1,5 +1,6 @@
 import './ItemContent.css';
 import FioFoto from './FIO';
+import CreatorFooter from "./CreatorFooter";
 
 export default function ItemContent({ activeSection }) {
   return (
@@ -8,6 +9,7 @@ export default function ItemContent({ activeSection }) {
         <div className="item-content">
           {activeSection === 'fio' && <FioFoto />}
         </div>
+        <CreatorFooter />
       </div>
     </>
   )
