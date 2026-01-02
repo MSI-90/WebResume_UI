@@ -1,0 +1,6 @@
+@mixin resume-main-label($color: #996699, $size: 1rem, $weight: bold) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+  margin-right: 10px;
+}

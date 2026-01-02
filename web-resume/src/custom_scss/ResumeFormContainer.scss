@@ -1,0 +1,5 @@
+@import './mymixins.scss';
+
+label {
+  @include resume-main-label();
+}

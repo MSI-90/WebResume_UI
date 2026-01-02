@@ -1,0 +1,18 @@
+.creator-item {
+    background-color: rgba(250, 245, 252, 0.78);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    left: -30px;
+    padding-left: 30px;
+    position: relative;
+    width: 35vw;
+    height: 55vh;
+}
+
+.item-content h3{
+    color: #44426c;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(0.7rem, 3vw, 1vw);
+    text-align: left;
+}

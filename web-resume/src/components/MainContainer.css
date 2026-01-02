@@ -1,0 +1,10 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1vh;
+    width: 95vw;
+    min-height: calc(100vh - 3vh);
+}
