@@ -1,107 +1,24 @@
 import './ResumeWrapper.css';
+import StepButton from "./StepButton";
 
-export default function ResumeWrapper() {
+export default function ResumeWrapper({ activeSection, setActiveSection }) {
   return (
     <>
       <div className="resume-wrapper">
         <div className="resume-items">
           <h3>Создайте своё резюме</h3>
-          <button data-target="fio">
-            <span className="round-number">1</span>
-            <span className="item-step-button-preview">ФИО и фото</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="contact">
-            <span className="round-number">2</span>
-            <span className="item-step-button-preview">Контактная информация</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="purpose-resume">
-            <span className="round-number">3</span>
-            <span className="item-step-button-preview">Цель резюме</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="job-info">
-            <span className="round-number">4</span>
-            <span className="item-step-button-preview">Информация о должности</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="personal-info">
-            <span className="round-number">5</span>
-            <span className="item-step-button-preview">Личная информация</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="experience">
-            <span className="round-number">6</span>
-            <span className="item-step-button-preview">Опыт работы</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="education">
-            <span className="round-number">7</span>
-            <span className="item-step-button-preview">Образование</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="courses">
-            <span className="round-number">8</span>
-            <span className="item-step-button-preview">Курсы и тренинги</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="languages">
-            <span className="round-number">9</span>
-            <span className="item-step-button-preview">Знание языков</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="skills">
-            <span className="round-number-2">10</span>
-            <span className="item-step-button-preview">Навыки</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="additional-info">
-            <span className="round-number-2">11</span>
-            <span className="item-step-button-preview">Дополнительная информация</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
-          <button data-target="portfolio">
-            <span className="round-number-2">12</span>
-            <span className="item-step-button-preview">Портфолио</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-            <span className="clear"></span>
-          </button>
+          <StepButton id="fio" number="1" text="ФИО и фото" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="contacts" number="2" text="Контактная информация" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="goal" number="3" text="Цель резюме" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="JobInfo" number="4" text="Информация о должности" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="Personalinfo" number="5" text="Личная информация" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="Experience" number="6" text="Опыт работы" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="Education" number="7" text="Образование" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="Couses" number="8" text="Курсы и тренинги" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="Lessons" number="9" text="Знание языков" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="Skills" number="10" text="Навыки" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="AdditioanlInfo" number="11" text="Дополнительная информация" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="ProjectInfo" number="12" text="Портфолио" activeSection={activeSection} onClick={setActiveSection} />
         </div>
       </div>
     </>
