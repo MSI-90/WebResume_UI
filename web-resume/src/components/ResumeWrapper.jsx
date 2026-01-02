@@ -8,7 +8,7 @@ export default function ResumeWrapper({ activeSection, setActiveSection }) {
         <div className="resume-items">
           <h3>Создайте своё резюме</h3>
           <StepButton id="fio" number="1" text="ФИО и фото" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="contacts" number="2" text="Контактная информация" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="contact" number="2" text="Контактная информация" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="goal" number="3" text="Цель резюме" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="JobInfo" number="4" text="Информация о должности" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="Personalinfo" number="5" text="Личная информация" activeSection={activeSection} onClick={setActiveSection} />
