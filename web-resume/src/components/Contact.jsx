@@ -1,12 +1,25 @@
 import './Contact.css';
-import Social from './modules/social';
+import SocialVariant from "./modules/social";
+import {useState} from "react";
 
 export default function Contact(){
+  const [ignoreSocial, setIgnoreSocial] = useState(false);
 
-  const socials = async() => {
-    console.log(process.env.REACT_APP_PAGE_TITLE);
-    const social = new Social();
-    await social.getSocial();
+  const setSocial = async() => {
+    if(ignoreSocial){
+      setIgnoreSocial(false);
+      return;
+    }
+    const social = new SocialVariant();
+    try{
+      const data = await social.getSocial();
+      if(data?.length > 0){
+        console.log(data);
+        setIgnoreSocial(true);
+      }
+    } catch(error){
+      setIgnoreSocial(false);
+    }
   }
 
   return (
@@ -24,8 +37,16 @@ export default function Contact(){
             <label htmlFor="email">Электронная почта</label><br/>
             <input type="email" id="email" required spellCheck="false"/>
           </div>
+          {ignoreSocial && (
+            <div id='soc'>
+              <label></label>
+              <input type='text'></input>
+            </div>
+          )}
           <div className="add-social">
-            <button onClick={() => socials()}>Указать социальную сеть</button>
+            <button onClick={() => setSocial()}>{
+              !ignoreSocial ? 'Указать социальную сеть' : 'Удалить социальную сеть'}
+            </button>
           </div>
         </div>
       </div>

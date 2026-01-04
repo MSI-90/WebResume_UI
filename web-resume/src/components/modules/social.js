@@ -1,25 +1,23 @@
+import config from '../config/api_config';
 import axios from "axios";
 
-export default class Social {
+export default class SocialVariant {
   #host;
   #port;
   #social;
   constructor() {
-    this.host = process.env.REACT_APP_HOST;
-    this.port = process.env.REACT_APP_PORT;
-    this.social = process.env.REACT_APP_SOCIAL_SOCIAL;
+    this.#host = config.HOST_URL;
+    this.#port = config.BACKEND_HTTPS_PORT;
+    this.#social = config.BACKEND_API_SOCIAL
   }
 
   async getSocial() {
     try{
-      console.log(this.host);
-      const str = `${this.#host/this.#port/this.#social}`;
-      console.log(str);
-      const social = await axios.get(`${this.#host/this.#port/this.#social}`, {});
-      console.log(social);
+      const social = await axios.get(`${'https://' + this.#host + ':' + this.#port + '/' + this.#social}`);
+      if (social.status === 200)
+        return social.data;
     }catch(error){
-      console.log(error);
+      throw error;
     }
-
   }
 }
