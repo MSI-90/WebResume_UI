@@ -1,0 +1,27 @@
+#soc {
+
+}
+
+.css-19bb58m {
+    display: none !important;
+}
+
+.css-13cymwt-control {
+    border: 3px solid #f48fb1 !important;
+    border-radius: 7px !important;
+    box-sizing: border-box !important;
+    color: #44426c !important;
+    font-weight: 550 !important;
+    padding: 10px 15px 10px !important;
+    width: 93% !important;
+}
+
+.item-contact-body #soc-link {
+    border: 3px solid #f48fb1;
+    border-radius: 7px;
+    box-sizing: border-box;
+    color: #44426c;
+    font-weight: 550;
+    padding: 10px 15px;
+    width: 93%;
+}
