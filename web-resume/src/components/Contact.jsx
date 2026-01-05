@@ -6,22 +6,28 @@ import {useState} from "react";
 export default function Contact(){
   const [ignoreSocial, setIgnoreSocial] = useState(false);
   const [socialList, setSocialList] = useState([]);
+  const [error, setError] = useState(false);
 
   const setSocial = async() => {
     if(ignoreSocial){
       setIgnoreSocial(false);
       setSocialList([]);
+      setError(false);
       return;
     }
+
     const social = new SocialVariant();
     try{
       const data = await social.getSocial();
       if(data?.length > 0){
         setSocialList(data);
         setIgnoreSocial(true);
+        setError(false);
       }
     } catch(error){
       setIgnoreSocial(false);
+      if (error.message === 'Network Error')
+        setError(true);
     }
   }
 
@@ -34,11 +40,11 @@ export default function Contact(){
         <div className="item-contact-body">
           <div>
             <label htmlFor="phone">Номер телефона</label><br/>
-            <input type="tel" id="phone" spellCheck="false" autoComplete='tel' />
+            <input type="tel" id="phone" spellCheck="false" autoComplete='tel' placeholder='+79997776655'/>
           </div>
           <div>
             <label htmlFor="email">Электронная почта</label><br/>
-            <input type="email" id="email" required spellCheck="false" autoComplete='email'/>
+            <input type="email" id="email" required spellCheck="false" autoComplete='email' placeholder='example@email.ru'/>
           </div>
           {ignoreSocial && (
             <Social socialList={socialList}/>
@@ -47,6 +53,10 @@ export default function Contact(){
             <button onClick={() => setSocial()}>{
               !ignoreSocial ? 'Указать социальную сеть' : 'Удалить социальную сеть'}
             </button>
+            {error &&
+              <span id='error'>
+                Ошибка сети, ответственные уже занимаются решением этого вопроса повторите попытку позднее...
+              </span>}
           </div>
         </div>
       </div>

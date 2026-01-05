@@ -44,7 +44,7 @@ export default function Social({socialList}) {
       </div>
       <div>
         <label>Профиль в соц.сети</label><br />
-        <input type='text' id='soc-link'></input>
+        <input type='text' id='soc-link' placeholder='@'></input>
       </div>
     </>
   )

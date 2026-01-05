@@ -1,3 +1,4 @@
+//TODO: рассмотреть вопрос переноса членов объекта в переменные среды (.env.*)
 const apiConfig = {
   HOST_URL: 'localhost',
   BACKEND_HTTP_PORT: 5049,

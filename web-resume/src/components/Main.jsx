@@ -2,6 +2,7 @@ import './Main.css';
 import Resume from './Resume'
 import {useState} from "react";
 
+//TODO: пересмотреть размер шрифта.
 export default function Main() {
   const [isVisible, setVisible] = useState(false);
   return (

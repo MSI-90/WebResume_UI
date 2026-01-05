@@ -55,3 +55,9 @@
         width: 93%;
     }
 }
+
+#error {
+    color: brown;
+    position: relative;
+    top: 15px;
+}
