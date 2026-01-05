@@ -1,21 +1,18 @@
-import SocialVariant from './modules/social';
 import './Social.css';
 import { useState } from 'react';
 import Select from 'react-select';
 
+// отображение списка элементов в react-select
 const CustomOption = ({ innerProps, label, data }) => (
   <div {...innerProps} style={{ display: 'flex', alignItems: 'center', padding: '8px' }}>
     {data.icon && (
-      <img
-        src={data.icon}
-        alt=""
-        style={{ width: '20px', height: '20px', marginRight: '8px' }}
-      />
+      <img src={data.icon} alt="" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
     )}
     <span>{label}</span>
   </div>
 );
 
+// отображение выбранного в списке элемента
 const CustomSingleValue = ({ children, data }) => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     {data.icon && (
