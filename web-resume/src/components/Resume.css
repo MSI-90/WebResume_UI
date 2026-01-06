@@ -1,4 +1,5 @@
 .resume {
+    align-items: flex-start;
     display: flex;
     flex: 1;
     flex-direction: row;
@@ -6,5 +7,4 @@
     gap: 30px;
     position: relative;
     top: 5vh;
-    max-height: 200vh;
 }
