@@ -1,12 +1,13 @@
 .creator-item .creator-footer {
     margin-top: 25px;
     padding-bottom: 20px;
+    text-align: center;
 }
 
 .save-button, .next-button {
     border-radius: 7px;
     font-size: clamp(0.7rem, 3vw, 0.8vw);
-    height: 50px;
+    height: 40px;
     padding: 5px 15px;
 }
 

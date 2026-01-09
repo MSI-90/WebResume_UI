@@ -27,7 +27,7 @@ export default function Contact(){
     } catch(error){
       setIgnoreSocial(false);
       if (error.message === 'Network Error')
-        setError(true);
+        setError(true) || setError(true);
     }
   }
 

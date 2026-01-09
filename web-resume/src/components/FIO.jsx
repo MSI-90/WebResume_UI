@@ -1,6 +1,14 @@
 import './FIO.css';
 
-export default function FioFoto (){
+const componentData = {
+  firstNameMaxLength: 50,
+  lastNameMaxLength: 70,
+  fatherNameMaxLength: 70
+}
+
+/**/
+
+export default function FioAndFoto (){
   return (
     <>
       <div id="item-main" className="section item-hidden">
@@ -15,15 +23,15 @@ export default function FioFoto (){
           </div>
           <div>
             <label id="fam" htmlFor="Family">Фамилия</label><br/>
-            <input type="text" id="Family" required spellCheck="false"/>
+            <input type="text" id="Family" required spellCheck="false" maxLength={componentData.lastNameMaxLength}/>
           </div>
           <div>
             <label htmlFor="Name">Имя</label><br/>
-            <input type="text" id="Name" required spellCheck="false"/>
+            <input type="text" id="Name" required spellCheck="false" maxLength={componentData.firstNameMaxLength}/>
           </div>
           <div>
             <label htmlFor="Father-name">Отчество</label><br/>
-            <input type="text" id="Father-name" required spellCheck="false"/>
+            <input type="text" id="Father-name" required spellCheck="false" maxLength={componentData.fatherNameMaxLength}/>
           </div>
         </div>
       </div>
