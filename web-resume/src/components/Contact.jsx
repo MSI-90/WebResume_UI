@@ -3,6 +3,7 @@ import Social from './Social';
 import SocialVariant from "./modules/social";
 import {useState} from "react";
 
+//TODO: сделать управляемый компонент, в плане listbox
 export default function Contact(){
   const [ignoreSocial, setIgnoreSocial] = useState(false);
   const [socialList, setSocialList] = useState([]);
@@ -54,8 +55,8 @@ export default function Contact(){
               !ignoreSocial ? 'Указать социальную сеть' : 'Удалить социальную сеть'}
             </button>
             {error &&
-              <span id='error'>
-                Ошибка сети, ответственные уже занимаются решением этого вопроса повторите попытку позднее...
+              <span className='error'>
+                Ошибка сети, ответственные уже занимаются решением этого вопроса, повторите попытку позднее...
               </span>}
           </div>
         </div>

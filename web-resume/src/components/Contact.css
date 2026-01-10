@@ -56,7 +56,7 @@
     }
 }
 
-#error {
+.error {
     color: brown;
     position: relative;
     top: 15px;

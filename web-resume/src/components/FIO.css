@@ -39,7 +39,7 @@
     font-weight: 500;
 }
 
-.item-main-body #Family, #Name, #Father-name {
+.item-main-body #family, #name, #father-name {
     border: 3px solid #f48fb1;
     border-radius: 7px;
     box-sizing: border-box;

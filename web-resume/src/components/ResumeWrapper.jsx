@@ -10,15 +10,15 @@ export default function ResumeWrapper({ activeSection, setActiveSection }) {
           <StepButton id="fio" number="1" text="ФИО и фото" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="contact" number="2" text="Контактная информация" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="goal" number="3" text="Цель резюме" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="JobInfo" number="4" text="Информация о должности" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="Personalinfo" number="5" text="Личная информация" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="Experience" number="6" text="Опыт работы" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="Education" number="7" text="Образование" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="Couses" number="8" text="Курсы и тренинги" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="Lessons" number="9" text="Знание языков" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="Skills" number="10" text="Навыки" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="AdditioanlInfo" number="11" text="Дополнительная информация" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="ProjectInfo" number="12" text="Портфолио" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="jobInfo" number="4" text="Информация о должности" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="personalinfo" number="5" text="Личная информация" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="experience" number="6" text="Опыт работы" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="education" number="7" text="Образование" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="couses" number="8" text="Курсы и тренинги" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="languages" number="9" text="Знание языков" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="skills" number="10" text="Навыки" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="additionalInfo" number="11" text="Дополнительная информация" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="projectInfo" number="12" text="Портфолио" activeSection={activeSection} onClick={setActiveSection} />
         </div>
       </div>
     </>

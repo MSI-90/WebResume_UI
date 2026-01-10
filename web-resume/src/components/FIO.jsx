@@ -6,9 +6,8 @@ const componentData = {
   fatherNameMaxLength: 70
 }
 
-/**/
+export default function Fio (){
 
-export default function FioAndFoto (){
   return (
     <>
       <div id="item-main" className="section item-hidden">
@@ -17,21 +16,21 @@ export default function FioAndFoto (){
         </div>
         <div className="item-main-body">
           <div className="photo">
-            <input type="file" id="photoInput" accept="image/*" hidden/>
+            <input type="file" id="photoInput" name='photo' accept="image/*" hidden/>
             <div id="photo-photo"></div>
             <span id="photo-sp">Добавьте фото</span>
           </div>
           <div>
-            <label id="fam" htmlFor="Family">Фамилия</label><br/>
-            <input type="text" id="Family" required spellCheck="false" maxLength={componentData.lastNameMaxLength}/>
+            <label id="fam" htmlFor="family">Фамилия</label><br/>
+            <input type="text" id="family" name='lastName' required spellCheck="false" maxLength={componentData.lastNameMaxLength}/>
           </div>
           <div>
-            <label htmlFor="Name">Имя</label><br/>
-            <input type="text" id="Name" required spellCheck="false" maxLength={componentData.firstNameMaxLength}/>
+            <label htmlFor="name">Имя</label><br/>
+            <input type="text" id="name" name='firstName' spellCheck="false" maxLength={componentData.firstNameMaxLength}/>
           </div>
           <div>
-            <label htmlFor="Father-name">Отчество</label><br/>
-            <input type="text" id="Father-name" required spellCheck="false" maxLength={componentData.fatherNameMaxLength}/>
+            <label htmlFor="father-name">Отчество</label><br/>
+            <input type="text" id="father-name" name='fatherName' required spellCheck="false" maxLength={componentData.fatherNameMaxLength}/>
           </div>
         </div>
       </div>

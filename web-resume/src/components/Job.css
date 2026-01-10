@@ -92,3 +92,9 @@
 .checkbox-wrapper:hover .checkmark {
     box-shadow: 0 0 0 3px rgba(244, 143, 177, 0.3);
 }
+
+.error {
+    color: brown;
+    position: relative;
+    top: 15px;
+}
