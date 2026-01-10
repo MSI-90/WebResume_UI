@@ -27,13 +27,15 @@ export default function Social({socialList}) {
   const options = socialList.map((item) => ({
     value: item.displayName,
     label: item.displayName,
-    icon: item.iconUrl
+    icon: item.iconUrl,
+    id: item.number,
   }))
   return (
     <>
       <div id='soc'>
         <label htmlFor='select'>Социальная сеть</label><br />
         <Select id='select'
+                name={options.id}
           defaultValue={selectedOption}
           onChange={setSelectedOption}
           options={options}

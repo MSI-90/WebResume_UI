@@ -6,7 +6,7 @@ const componentData = {
   fatherNameMaxLength: 70
 }
 
-export default function Fio (){
+export default function Fio ({formData, onFieldChange}){
 
   return (
     <>
@@ -16,21 +16,25 @@ export default function Fio (){
         </div>
         <div className="item-main-body">
           <div className="photo">
-            <input type="file" id="photoInput" name='photo' accept="image/*" hidden/>
+            <input type="file" id="photoInput" name='photo' accept="image/*" hidden
+                   onChange={onFieldChange('photo')}/>
             <div id="photo-photo"></div>
             <span id="photo-sp">Добавьте фото</span>
           </div>
           <div>
             <label id="fam" htmlFor="family">Фамилия</label><br/>
-            <input type="text" id="family" name='lastName' required spellCheck="false" maxLength={componentData.lastNameMaxLength}/>
+            <input type="text" id="family" name='lastName' required spellCheck="false" maxLength={componentData.lastNameMaxLength}
+                   value={formData.lastName} onChange={onFieldChange('lastName')}/>
           </div>
           <div>
             <label htmlFor="name">Имя</label><br/>
-            <input type="text" id="name" name='firstName' spellCheck="false" maxLength={componentData.firstNameMaxLength}/>
+            <input type="text" id="name" name='firstName' spellCheck="false" maxLength={componentData.firstNameMaxLength}
+                   value={formData.firstName} onChange={onFieldChange('firstName')}/>
           </div>
           <div>
             <label htmlFor="father-name">Отчество</label><br/>
-            <input type="text" id="father-name" name='fatherName' required spellCheck="false" maxLength={componentData.fatherNameMaxLength}/>
+            <input type="text" id="father-name" name='fatherName' required spellCheck="false" maxLength={componentData.fatherNameMaxLength}
+                   value={formData.fatherName} onChange={onFieldChange('fatherName')}/>
           </div>
         </div>
       </div>

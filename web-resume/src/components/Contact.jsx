@@ -41,11 +41,11 @@ export default function Contact(){
         <div className="item-contact-body">
           <div>
             <label htmlFor="phone">Номер телефона</label><br/>
-            <input type="tel" id="phone" spellCheck="false" autoComplete='tel' placeholder='+79997776655'/>
+            <input type="tel" id="phone" name='phone' spellCheck="false" autoComplete='tel' placeholder='+79997776655'/>
           </div>
           <div>
             <label htmlFor="email">Электронная почта</label><br/>
-            <input type="email" id="email" required spellCheck="false" autoComplete='email' placeholder='example@email.ru'/>
+            <input type="email" id="email" name='email' required spellCheck="false" autoComplete='email' placeholder='example@email.ru'/>
           </div>
           {ignoreSocial && (
             <Social socialList={socialList}/>
