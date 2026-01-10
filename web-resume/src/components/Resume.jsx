@@ -12,7 +12,7 @@ export default function Resume({visible}) {
     photo: null,
     tel: '',
     email: '',
-    social: '',
+    social: null,
     nick: ''
   });
 

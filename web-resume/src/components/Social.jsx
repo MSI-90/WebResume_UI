@@ -22,22 +22,45 @@ const CustomSingleValue = ({ children, data }) => (
   </div>
 );
 
-export default function Social({socialList}) {
-  const [selectedOption, setSelectedOption] = useState(null);
+export default function Social({socialList, value, onChange, nickValue, onNickChange}) {
+  console.log('value:', value);
   const options = socialList.map((item) => ({
-    value: item.displayName,
+    value: item.number,
     label: item.displayName,
     icon: item.iconUrl,
-    id: item.number,
   }))
+
+  // Если соцсети не загружены — показываем заглушку
+  if (socialList.length === 0) {
+    return (
+      <div id="soc">
+        <label htmlFor="select">Социальная сеть</label><br />
+        <div style={{ padding: '8px', color: '#666' }}>Загрузка...</div>
+      </div>
+    );
+  }
+
+  const selectedOption = options.find((option) => option.value === value) || null;
+
+  const handleChange = (selected) => {
+    const syntheticEvent = {
+      target: {
+        name: 'social',
+        value: selected ? selected.value : null
+      }
+    };
+    onChange(syntheticEvent);
+  };
+
   return (
     <>
       <div id='soc'>
         <label htmlFor='select'>Социальная сеть</label><br />
-        <Select id='select'
-                name={options.id}
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
+        <Select
+          id='select'
+          key={socialList.length}
+          value={selectedOption}
+          onChange={handleChange}
           options={options}
           components={{
             Option: CustomOption,
@@ -46,7 +69,9 @@ export default function Social({socialList}) {
       </div>
       <div>
         <label>Профиль в соц.сети</label><br />
-        <input type='text' id='soc-link' placeholder='@'></input>
+        <input type='text' id='soc-link' placeholder='@'
+               value={nickValue}
+               onChange={onNickChange}></input>
       </div>
     </>
   )

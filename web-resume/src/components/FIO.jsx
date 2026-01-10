@@ -33,7 +33,7 @@ export default function Fio ({formData, onFieldChange}){
           </div>
           <div>
             <label htmlFor="father-name">Отчество</label><br/>
-            <input type="text" id="father-name" name='fatherName' required spellCheck="false" maxLength={componentData.fatherNameMaxLength}
+            <input type="text" id="father-name" name='fatherName' spellCheck="false" maxLength={componentData.fatherNameMaxLength}
                    value={formData.fatherName} onChange={onFieldChange('fatherName')}/>
           </div>
         </div>

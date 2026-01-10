@@ -4,7 +4,7 @@ import SocialVariant from "./modules/social";
 import {useState} from "react";
 
 //TODO: сделать управляемый компонент, в плане listbox
-export default function Contact(){
+export default function Contact({formData, onFieldChange}) {
   const [ignoreSocial, setIgnoreSocial] = useState(false);
   const [socialList, setSocialList] = useState([]);
   const [error, setError] = useState(false);
@@ -41,14 +41,21 @@ export default function Contact(){
         <div className="item-contact-body">
           <div>
             <label htmlFor="phone">Номер телефона</label><br/>
-            <input type="tel" id="phone" name='phone' spellCheck="false" autoComplete='tel' placeholder='+79997776655'/>
+            <input type="tel" id="phone" name='phone' spellCheck="false" autoComplete='tel' placeholder='+79997776655'
+                   value={formData.tel} onChange={onFieldChange('tel')} />
           </div>
           <div>
             <label htmlFor="email">Электронная почта</label><br/>
-            <input type="email" id="email" name='email' required spellCheck="false" autoComplete='email' placeholder='example@email.ru'/>
+            <input type="email" id="email" name='email' required spellCheck="false" autoComplete='email' placeholder='example@email.ru'
+                   value={formData.email} onChange={onFieldChange('email')} />
           </div>
           {ignoreSocial && (
-            <Social socialList={socialList}/>
+            <Social
+              socialList={socialList}
+              value={formData.social}
+              onChange={onFieldChange('social')}
+              nickValue={formData.nick}
+              onNickChange={onFieldChange('nick')} />
           )}
           <div className="add-social">
             <button onClick={() => setSocial()}>{
