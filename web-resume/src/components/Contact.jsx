@@ -3,11 +3,19 @@ import Social from './Social';
 import SocialVariant from "./modules/social";
 import {useState} from "react";
 
-//TODO: сделать управляемый компонент, в плане listbox
 export default function Contact({formData, onFieldChange}) {
   const [ignoreSocial, setIgnoreSocial] = useState(false);
   const [socialList, setSocialList] = useState([]);
   const [error, setError] = useState(false);
+
+  // props для дочернего компонента Social
+  let socialArgs = {
+    socialList: socialList,
+    value: formData.social,
+    onChange: onFieldChange('social'),
+    nickValue: formData.nick,
+    onNickChange: onFieldChange('nick')
+  }
 
   const setSocial = async() => {
     if(ignoreSocial){
@@ -28,7 +36,9 @@ export default function Contact({formData, onFieldChange}) {
     } catch(error){
       setIgnoreSocial(false);
       if (error.message === 'Network Error')
-        setError(true) || setError(true);
+        setError(true);
+
+      setError(true);
     }
   }
 
@@ -50,15 +60,10 @@ export default function Contact({formData, onFieldChange}) {
                    value={formData.email} onChange={onFieldChange('email')} />
           </div>
           {ignoreSocial && (
-            <Social
-              socialList={socialList}
-              value={formData.social}
-              onChange={onFieldChange('social')}
-              nickValue={formData.nick}
-              onNickChange={onFieldChange('nick')} />
+            <Social {...socialArgs} />
           )}
           <div className="add-social">
-            <button onClick={() => setSocial()}>{
+            <button type="button" onClick={() => setSocial()}>{
               !ignoreSocial ? 'Указать социальную сеть' : 'Удалить социальную сеть'}
             </button>
             {error &&

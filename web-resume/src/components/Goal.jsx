@@ -57,7 +57,7 @@ export default function Goal() {
             </div>
           </div>
         )}
-        <button onClick={() => goalChange()}>{goal ? 'Удалить текст для цель резюме' :'Добавить текст для цели резюме'}</button>
+        <button type='button' onClick={() => goalChange()}>{goal ? 'Удалить текст для цель резюме' :'Добавить текст для цели резюме'}</button>
       </div>
     </>
   )

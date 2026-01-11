@@ -1,12 +1,11 @@
 import './FIO.css';
 
-const componentData = {
-  firstNameMaxLength: 50,
-  lastNameMaxLength: 70,
-  fatherNameMaxLength: 70
-}
-
 export default function Fio ({formData, onFieldChange}){
+  const componentData = {
+    firstNameMaxLength: 50,
+    lastNameMaxLength: 70,
+    fatherNameMaxLength: 70
+  }
 
   return (
     <>

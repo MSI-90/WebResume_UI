@@ -15,10 +15,20 @@ export default class SocialVariant {
 
   async getSocial() {
     try{
-      const social = await axios.get(`${this.#hostAndPort + '/' + this.#social}`);
-      if (social.status === 200)
-        return social.data;
+      const response = await axios.get(`${this.#hostAndPort + '/' + this.#social}`, {timeout: 5000});
+      if (response.status !== 200) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      return response.data;
     }catch(error){
+      if (axios.isAxiosError(error)) {
+        throw new Error(
+          error.response?.data?.message ||
+          error.message ||
+          'Network Error'
+        );
+      }
       throw error;
     }
   }
