@@ -10,11 +10,11 @@ export default function Contact({formData, onFieldChange}) {
 
   // props для дочернего компонента Social
   let socialArgs = {
-    socialList: socialList,
-    value: formData.social,
-    onChange: onFieldChange('social'),
-    nickValue: formData.nick,
-    onNickChange: onFieldChange('nick')
+    socialList,
+    value: formData.socialType,
+    onChange: onFieldChange('socialType'),
+    nickValue: formData.socialLink,
+    onNickChange: onFieldChange('socialLink'),
   }
 
   const setSocial = async() => {

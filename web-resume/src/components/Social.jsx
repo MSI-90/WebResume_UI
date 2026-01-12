@@ -1,5 +1,4 @@
 import './Social.css';
-import { useState } from 'react';
 import Select from 'react-select';
 
 // отображение списка элементов в react-select
@@ -23,7 +22,6 @@ const CustomSingleValue = ({ children, data }) => (
 );
 
 export default function Social({socialList, value, onChange, nickValue, onNickChange}) {
-  console.log('value:', value);
   const options = socialList.map((item) => ({
     value: item.number,
     label: item.displayName,
@@ -71,7 +69,9 @@ export default function Social({socialList, value, onChange, nickValue, onNickCh
         <label>Профиль в соц.сети</label><br />
         <input type='text' id='soc-link' placeholder='@'
                value={nickValue}
-               onChange={onNickChange}></input>
+               onChange={onNickChange}
+               required>
+        </input>
       </div>
     </>
   )

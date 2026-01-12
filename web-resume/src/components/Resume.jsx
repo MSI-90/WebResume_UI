@@ -2,24 +2,22 @@ import './Resume.css';
 import ResumeWrapper from './ResumeWrapper';
 import ItemContent from "./ItemContent";
 import ResumeBackend from './modules/resume';
-import {useState, useEffect} from "react";
+import {useState} from "react";
 
 export default function Resume({visible}) {
   const [activeSection, setActiveSection] = useState('fio');
   const [formData, setFormData] = useState({
-    // TODO: шаблон стоит костыльно, пока что пусть так, после рассмотреть вопрос его установки в зависимости от типа (аккаунта или разовой акции?)
+    // TODO: шаблон templateId стоит костыльно, пока что пусть так, после рассмотреть вопрос его установки в зависимости от типа (аккаунта или разовой акции?)
     templateId: 'db58c76e-bcb5-4c6a-ad60-0e61bf3ac11c',
     firstName: '',
     lastName: '',
     fatherName: '',
-
+    photo: null,
+    tel: '',
+    email: '',
+    socialType: null,
+    socialLink: '',
   });
-
-  // photo: null,
-  //   tel: '',
-  //   email: '',
-  //   social: null,
-  //   nick: ''
 
   const handleInputChange = (field) => (e) => {
     if (e.target.type === 'file') {
@@ -29,6 +27,7 @@ export default function Resume({visible}) {
     }
   };
 
+  // TODO: убрать отладочный вывод в консоль
   const submitForm = async(e) => {
       e.preventDefault();
       try{
@@ -45,9 +44,9 @@ export default function Resume({visible}) {
     <>
       <div className="resume">
         <ResumeWrapper activeSection={activeSection} setActiveSection={setActiveSection} />
-        <form className="resume-form">
+        <form className="resume-form" onSubmit={submitForm}>
           <ItemContent activeSection={activeSection} formData={formData} onFieldChange={handleInputChange} />
-          <button type='button' onClick={(e)=> submitForm(e)} >Отправить</button>
+          <button type='submit'>Отправить</button>
         </form>
       </div>
     </>)

@@ -27,7 +27,7 @@ export default function Fio ({formData, onFieldChange}){
           </div>
           <div>
             <label htmlFor="name">Имя</label><br/>
-            <input type="text" id="name" name='firstName' spellCheck="false" maxLength={componentData.firstNameMaxLength}
+            <input type="text" id="name" name='firstName' required spellCheck="false" maxLength={componentData.firstNameMaxLength}
                    value={formData.firstName} onChange={onFieldChange('firstName')}/>
           </div>
           <div>
