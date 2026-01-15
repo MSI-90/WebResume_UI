@@ -47,7 +47,7 @@ export default class ResumeBackend {
       lastName: this.#formData.lastName,
       fatherName: this.#formData.fatherName,
       photo: this.#formData.photo,
-      ContactInfo: !this.contactInfo() ? null : JSON.stringify(this.contactInfo()),
+      ContactInfo: !this.contactInfo() ? null : this.contactInfo(),
       PurposeResume: this.goalInfo(),
       DesiredJob: this.jobInfo()
     };
@@ -57,19 +57,19 @@ export default class ResumeBackend {
     if (!this.#formData) return null;
     if (!this.#formData.email) return null;
     if (this.#formData.socialType !== null && this.#formData.socialLink?.length > 0)
-      return {
-        Phone: this.#formData.tel ?? '',
-        Email: this.#formData.email,
-        SocialNetwork: {
-          SocialType: this.#formData.socialType ?? 0,
-          SocialLink: this.#formData.socialLink ?? ''
+      return JSON.stringify({
+        'Phone': this.#formData.tel ?? '',
+        'Email': this.#formData.email,
+        'SocialNetwork': {
+          'SocialType': this.#formData.socialType ?? 0,
+          'SocialLink': this.#formData.socialLink ?? ''
         }
-    }
+      })
 
-    return {
-      Phone: this.#formData.tel ?? '',
-      Email: this.#formData.email
-    }
+    return JSON.stringify({
+      'Phone': this.#formData.tel ?? '',
+      'Email': this.#formData.email
+    })
   }
 
   goalInfo(){
