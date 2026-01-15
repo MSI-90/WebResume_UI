@@ -92,19 +92,24 @@ export default function Job({formData, onFieldChange}) {
           </div>
           <br/>
           <div className="desired-job-info">
-            <div>
-              <label htmlFor="amount">Желаемая зарплата</label><br/>
-              <input type="number" id="amount" spellCheck="false" value={formData.desiredSalary} onChange={onFieldChange('desiredSalary')} />
-            </div>
-            <div>
-              <label htmlFor="currency">Валюта</label><br/>
-              <select id="currency" value={formData.currency} onChange={onFieldChange('currency')}>
-                { Array.isArray(currencyList) && currencyList.length > 0 &&
-                  currencyList.map((item) => (
-                  <option key={item.currencyCode} value={item.currencyCode}>{item.currencyNameRu}</option>
-                ))}
-              </select>
-            </div>
+            {!formData.byAgreement && (
+              <>
+                <div>
+                  <label htmlFor="amount">Желаемая зарплата</label><br/>
+                  <input type="number" id="amount" spellCheck="false" value={formData.desiredSalary} onChange={onFieldChange('desiredSalary')} />
+                </div>
+                <div>
+                  <label htmlFor="currency">Валюта</label><br/>
+                  <select id="currency" value={formData.currency} onChange={onFieldChange('currency')}>
+                    { Array.isArray(currencyList) && currencyList.length > 0 &&
+                      currencyList.map((item) => (
+                        <option key={item.currencyCode} value={item.currencyCode}>{item.currencyNameRu}</option>
+                      ))}
+                  </select>
+                </div>
+              </>
+            )}
+
             <div className="agreement">
               <label className="agreement-label">По договорённости</label>
               <label className="checkbox-wrapper">
@@ -112,30 +117,26 @@ export default function Job({formData, onFieldChange}) {
                 <span className="checkmark"></span>
               </label>
             </div>
-            {!formData.byAgreement && (
-              <>
-                <div>
-                  <br/>
-                  <label htmlFor="employment-type">Тип занятости</label><br/>
-                  <select id="employment-type" value={formData.employmentType} onChange={onFieldChange('employmentType')}>
-                    { Array.isArray(employmentType) && employmentType.length > 0 &&
-                      employmentType.map((item) => (
-                        <option key={item.id} value={item.id}>{item.employmentTypeNameRu}</option>
-                      ))}
-                  </select>
-                </div>
-                <div>
-                  <br/>
-                  <label htmlFor="work-schedule">График работы</label><br/>
-                  <select id="work-schedule" spellCheck="false" value={formData.workSchedule} onChange={onFieldChange('workSchedule')}>
-                    { Array.isArray(workSchedule) && workSchedule.length > 0 &&
-                      workSchedule.map((item) => (
-                        <option key={item.id} value={item.id}>{item.workScheduleNameRu}</option>
-                      ))}
-                  </select>
-                </div>
-              </>
-            )}
+            <div>
+              <br/>
+              <label htmlFor="employment-type">Тип занятости</label><br/>
+              <select id="employment-type" value={formData.employmentType} onChange={onFieldChange('employmentType')}>
+                { Array.isArray(employmentType) && employmentType.length > 0 &&
+                  employmentType.map((item) => (
+                    <option key={item.id} value={item.id}>{item.employmentTypeNameRu}</option>
+                  ))}
+              </select>
+            </div>
+            <div>
+              <br/>
+              <label htmlFor="work-schedule">График работы</label><br/>
+              <select id="work-schedule" spellCheck="false" value={formData.workSchedule} onChange={onFieldChange('workSchedule')}>
+                { Array.isArray(workSchedule) && workSchedule.length > 0 &&
+                  workSchedule.map((item) => (
+                    <option key={item.id} value={item.id}>{item.workScheduleNameRu}</option>
+                  ))}
+              </select>
+            </div>
           </div>
         </div>
       </div>
