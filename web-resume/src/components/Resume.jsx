@@ -17,12 +17,22 @@ export default function Resume({visible}) {
     email: '',
     socialType: null,
     socialLink: '',
+    goal: '',
+    jobTitle: '',
+    desiredSalary: null,
+    currency: 810,
+    byAgreement: false,
+    employmentType: null,
+    workSchedule: null,
   });
 
   const handleInputChange = (field) => (e) => {
     if (e.target.type === 'file') {
       setFormData(prev => ({ ...prev, [field]: e.target.files[0] }));
-    } else {
+    } else if (e.target.type === 'checkbox') {
+      setFormData(prev => ({ ...prev, [field]: e.target.checked }));
+    }
+    else {
       setFormData(prev => ({ ...prev, [field]: e.target.value }));
     }
   };

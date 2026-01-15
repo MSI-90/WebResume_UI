@@ -1,7 +1,7 @@
 import './Goal.css';
 import {useRef, useState} from 'react'
 
-export default function Goal() {
+export default function Goal({formData, onFieldChange}) {
   const [goal, setGoal] = useState(false);
   const [goalValue, setGoalValue] = useState('');
 
@@ -11,9 +11,6 @@ export default function Goal() {
     setGoalValue( '');
     setGoal(prev => !prev);
   }
-
-  const goalValueChange = (evt) =>
-    setGoalValue(evt.target.value);
 
   return (
     <>
@@ -47,9 +44,9 @@ export default function Goal() {
             <div className="textarea-wrapper">
               <textarea id="purpose" spellCheck="true"
                         maxLength={maxLengthValue}
-                        value={goalValue}
+                        value={formData.goal}
                         placeholder={`Введите не более ${maxLengthValue} символов`}
-                        onChange={(event) => goalValueChange(event)}>
+                        onChange={onFieldChange('goal')}>
               </textarea>
               <div className="char-counter">
                 {goalValue.length}/{maxLengthValue}

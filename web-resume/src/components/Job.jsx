@@ -19,7 +19,7 @@ async function getEmploymentType() {
   return await jobData.getEmploymentType();
 }
 
-export default function Job() {
+export default function Job({formData, onFieldChange}) {
   const [currencyList, setCurrencyList ] = useState([]);
   const [workSchedule, setWorkSchedule] = useState([]);
   const [employmentType, setEmploymentType] = useState([]);
@@ -32,7 +32,7 @@ export default function Job() {
       setEmploymentType(employmentType);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     let isMounted = true;
 
     (async () => {
@@ -88,17 +88,17 @@ export default function Job() {
         <div className="item-job-body">
           <div>
             <label htmlFor="job">Должность</label><br/>
-            <input type="text" id="job" spellCheck="false"/>
+            <input type="text" id="job" spellCheck="false" value={formData.jobTitle} onChange={onFieldChange('jobTitle')} />
           </div>
           <br/>
           <div className="desired-job-info">
             <div>
               <label htmlFor="amount">Желаемая зарплата</label><br/>
-              <input type="number" id="amount" spellCheck="false"/>
+              <input type="number" id="amount" spellCheck="false" value={formData.desiredSalary} onChange={onFieldChange('desiredSalary')} />
             </div>
             <div>
               <label htmlFor="currency">Валюта</label><br/>
-              <select id="currency">
+              <select id="currency" value={formData.currency} onChange={onFieldChange('currency')}>
                 { Array.isArray(currencyList) && currencyList.length > 0 &&
                   currencyList.map((item) => (
                   <option key={item.currencyCode} value={item.currencyCode}>{item.currencyNameRu}</option>
@@ -108,30 +108,34 @@ export default function Job() {
             <div className="agreement">
               <label className="agreement-label">По договорённости</label>
               <label className="checkbox-wrapper">
-                <input type="checkbox" id="by-agreement"/>
+                <input type="checkbox" id="by-agreement" checked={formData.byAgreement} onChange={onFieldChange('byAgreement')} />
                 <span className="checkmark"></span>
               </label>
             </div>
-            <div>
-              <br/>
-              <label htmlFor="employment-type">Тип занятости</label><br/>
-              <select id="employment-type">
-                { Array.isArray(employmentType) && employmentType.length > 0 &&
-                  employmentType.map((item) => (
-                    <option key={item.id} value={item.id}>{item.employmentTypeNameRu}</option>
-                  ))}
-              </select>
-            </div>
-            <div>
-              <br/>
-              <label htmlFor="work-schedule">График работы</label><br/>
-              <select id="work-schedule" spellCheck="false">
-                { Array.isArray(workSchedule) && workSchedule.length > 0 &&
-                  workSchedule.map((item) => (
-                    <option key={item.id} value={item.id}>{item.workScheduleNameRu}</option>
-                  ))}
-              </select>
-            </div>
+            {!formData.byAgreement && (
+              <>
+                <div>
+                  <br/>
+                  <label htmlFor="employment-type">Тип занятости</label><br/>
+                  <select id="employment-type" value={formData.employmentType} onChange={onFieldChange('employmentType')}>
+                    { Array.isArray(employmentType) && employmentType.length > 0 &&
+                      employmentType.map((item) => (
+                        <option key={item.id} value={item.id}>{item.employmentTypeNameRu}</option>
+                      ))}
+                  </select>
+                </div>
+                <div>
+                  <br/>
+                  <label htmlFor="work-schedule">График работы</label><br/>
+                  <select id="work-schedule" spellCheck="false" value={formData.workSchedule} onChange={onFieldChange('workSchedule')}>
+                    { Array.isArray(workSchedule) && workSchedule.length > 0 &&
+                      workSchedule.map((item) => (
+                        <option key={item.id} value={item.id}>{item.workScheduleNameRu}</option>
+                      ))}
+                  </select>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

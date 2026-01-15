@@ -23,6 +23,7 @@ export default class ResumeBackend {
       throw new Error('Данные отсутствуют');
 
     try{
+      console.log(this.constructObjectData());
       const url = `${this.#hostAndPort + '/' + this.#resume}`;
       const response = await axios.post(url, this.constructObjectData(), {
         headers: {
@@ -46,13 +47,16 @@ export default class ResumeBackend {
       lastName: this.#formData.lastName,
       fatherName: this.#formData.fatherName,
       photo: this.#formData.photo,
-      ContactInfo: JSON.stringify(this.contactInfo()),
+      ContactInfo: !this.contactInfo() ? null : JSON.stringify(this.contactInfo()),
+      PurposeResume: this.goalInfo(),
+      DesiredJob: this.jobInfo()
     };
   }
 
   contactInfo() {
     if (!this.#formData) return null;
-    if (this.#formData.socialType !== null && this.#formData.socialLink.length > 0)
+    if (!this.#formData.email) return null;
+    if (this.#formData.socialType !== null && this.#formData.socialLink?.length > 0)
       return {
         Phone: this.#formData.tel ?? '',
         Email: this.#formData.email,
@@ -66,5 +70,61 @@ export default class ResumeBackend {
       Phone: this.#formData.tel ?? '',
       Email: this.#formData.email
     }
+  }
+
+  goalInfo(){
+    if (!this.#formData) return null;
+
+    let goal = this.#formData.goal;
+    if (!goal || typeof goal !== 'string') return null;
+
+    // Очищаем от HTML-сущностей
+    goal = goal
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&apos;/g, "'");
+
+    // Нормализуем пробелы
+    goal = goal.replace(/\s+/g, ' ').trim();
+
+    if (!goal) return null;
+
+    return this.validText(goal) ? goal : null;
+  }
+
+  validText(text){
+    // Запрещаем HTML-спецсимволы
+    if (/[<>&"'`]/.test(text)) {
+      return false;
+    }
+
+    // Разрешаем буквы, цифры, пробел, пунктуацию (без &, <, >, ", ')
+    const regex = /^(?=.*\p{L})[\p{L}\p{N}\s!#\$%\(\)*+,\-./:;<=>?@[\\\]^_`{|}~]+$/u;
+    return regex.test(text);
+  }
+
+  jobInfo(){
+    if (!this.#formData) return null;
+    if (this.#formData.byAgreement)
+      return JSON.stringify({
+        'JobTitle': this.#formData.jobTitle  ,
+        'DesiredSalary': null,
+        'Currency': null,
+        'ByAgreement': this.#formData.byAgreement,
+        'EmploymentType': Number.parseInt(this.#formData.employmentType),
+        'WorkSchedule': Number.parseInt(this.#formData.workSchedule)
+      })
+
+    return JSON.stringify({
+      'JobTitle': this.#formData.jobTitle  ,
+      'DesiredSalary': Number.parseInt(this.#formData.desiredSalary),
+      'Currency': Number.parseInt(this.#formData.currency),
+      'ByAgreement': this.#formData.byAgreement,
+      'EmploymentType': Number.parseInt(this.#formData.employmentType),
+      'WorkSchedule': Number.parseInt(this.#formData.workSchedule)
+    })
   }
 }

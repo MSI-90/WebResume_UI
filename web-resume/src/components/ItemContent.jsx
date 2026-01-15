@@ -12,8 +12,8 @@ export default function ItemContent({activeSection, formData, onFieldChange}) {
         <div className="item-content">
           {activeSection === 'fio' && <Fio formData={formData} onFieldChange={onFieldChange} />}
           {activeSection === 'contact' && <Contact formData={formData} onFieldChange={onFieldChange} />}
-          {activeSection === 'goal' && <Goal />}
-          {activeSection === 'jobInfo' && <Job />}
+          {activeSection === 'goal' && <Goal formData={formData} onFieldChange={onFieldChange} />}
+          {activeSection === 'jobInfo' && <Job formData={formData} onFieldChange={onFieldChange} />}
         </div>
         <CreatorFooter />
       </div>
