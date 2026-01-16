@@ -11,7 +11,7 @@ export default function ResumeWrapper({ activeSection, setActiveSection }) {
           <StepButton id="contact" number="2" text="Контактная информация" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="goal" number="3" text="Цель резюме" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="jobInfo" number="4" text="Информация о должности" activeSection={activeSection} onClick={setActiveSection} />
-          <StepButton id="personalinfo" number="5" text="Личная информация" activeSection={activeSection} onClick={setActiveSection} />
+          <StepButton id="personalInfo" number="5" text="Личная информация" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="experience" number="6" text="Опыт работы" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="education" number="7" text="Образование" activeSection={activeSection} onClick={setActiveSection} />
           <StepButton id="couses" number="8" text="Курсы и тренинги" activeSection={activeSection} onClick={setActiveSection} />
