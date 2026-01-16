@@ -49,7 +49,7 @@ export default function Goal({formData, onFieldChange}) {
                         onChange={onFieldChange('goal')}>
               </textarea>
               <div className="char-counter">
-                {goalValue.length}/{maxLengthValue}
+                {formData.goal.length}/{maxLengthValue}
               </div>
             </div>
           </div>
