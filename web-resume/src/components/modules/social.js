@@ -21,7 +21,7 @@ export default class SocialVariant {
       }
 
       return response.data;
-    }catch(error){
+    } catch(error) {
       if (axios.isAxiosError(error)) {
         throw new Error(
           error.response?.data?.message ||

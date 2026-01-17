@@ -19,11 +19,22 @@ export default function Resume({visible}) {
     socialLink: '',
     goal: '',
     jobTitle: '',
-    desiredSalary: null,
+    desiredSalary: '',
     currency: 810,
     byAgreement: false,
-    employmentType: null,
-    workSchedule: null,
+    employmentType: '',
+    workSchedule: '',
+
+    city:'',
+    isDualCitizenship: false,
+    dateOfBirth: '',
+    monthOfBirth: '',
+    yearOfBirth: new Date().getFullYear(),
+    moving: '',
+    sex: '',
+    marital: '',
+    citizenship: '1cbca6a4-dfbc-4d90-9758-0e87a66293b9',
+    children: false
   });
 
   const handleInputChange = (field) => (e) => {
@@ -31,8 +42,7 @@ export default function Resume({visible}) {
       setFormData(prev => ({ ...prev, [field]: e.target.files[0] }));
     } else if (e.target.type === 'checkbox') {
       setFormData(prev => ({ ...prev, [field]: e.target.checked }));
-    }
-    else {
+    } else {
       setFormData(prev => ({ ...prev, [field]: e.target.value }));
     }
   };

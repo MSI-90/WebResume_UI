@@ -8,7 +8,6 @@ export default function Contact({formData, onFieldChange}) {
   const [socialList, setSocialList] = useState([]);
   const [error, setError] = useState(false);
 
-  // props для дочернего компонента Social
   let socialArgs = {
     socialList,
     value: formData.socialType,

@@ -32,7 +32,7 @@ export default class ResumeBackend {
       if (response.status === 201) {
         return response.data;
       }
-    }catch(error){
+    } catch(error) {
       if (error.response.status === 400) {
         return new ServerError(error.response.data.errors).setErrors();
       }
@@ -49,7 +49,9 @@ export default class ResumeBackend {
       photo: this.#formData.photo,
       ContactInfo: !this.contactInfo() ? null : this.contactInfo(),
       PurposeResume: this.goalInfo(),
-      DesiredJob: this.jobInfo()
+      DesiredJob: this.jobInfo(),
+      PersonalInfo: this.personalInfo(),
+      CitizenshipIds: [this.#formData.citizenship]
     };
   }
 
@@ -107,7 +109,7 @@ export default class ResumeBackend {
   }
 
   jobInfo(){
-    if (!this.#formData) return null;
+    if (!this.#formData || !this.#formData.jobTitle) return null;
     if (this.#formData.byAgreement)
       return JSON.stringify({
         'JobTitle': this.#formData.jobTitle  ,
@@ -127,4 +129,24 @@ export default class ResumeBackend {
       'WorkSchedule': Number.parseInt(this.#formData.workSchedule)
     })
   }
+
+  personalInfo(){
+    if (!this.#formData) return null;
+
+    const arr = [this.#formData.city, this.#formData.dateOfBirth, this.#formData.monthOfBirth,
+      this.#formData.moving, this.#formData.sex, this.#formData.marital];
+
+    if (arr.some(item => item == null || item === '')) return null;
+
+    return JSON.stringify({
+      'City': this.#formData.city,
+      "IsDualCitizenship": this.#formData.isDualCitizenship,
+      'Birthday': `${this.#formData.yearOfBirth}-${this.#formData.monthOfBirth.padStart(2, '0')}-${this.#formData.dateOfBirth}`,
+      'IsChildren': this.#formData.children,
+      'Sex': Number.parseInt(this.#formData.sex),
+      'Moving': Number.parseInt(this.#formData.moving),
+      'MaritalStatus': Number.parseInt(this.#formData.marital),
+    });
+  }
+
 }

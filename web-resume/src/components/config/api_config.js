@@ -7,7 +7,13 @@ const apiConfig = {
   BACKEND_API_SOCIAL: 'api/social',
   BACKEND_API_CURRENCY: 'api/currency',
   BACKEND_API_WORK_SCHEDULE: 'api/work-shedule',
-  BACKEND_API_EMPLOYMENT_TYPE: 'api/employnment-type'
+  BACKEND_API_EMPLOYMENT_TYPE: 'api/employnment-type',
+  BACKEND_API_BIRTHDAY: 'api/birthday',
+  BACKEND_API_PERSONAL: 'api/personal',
+  BACKEND_API_PERSONAL_MOVING: 'moving-variant',
+  BACKEND_API_PERSONAL_MARITAL: 'marital-status',
+  BACKEND_API_PERSONAL_SEX: 'sex',
+  BACKEND_API_CITIZENSHIP: 'api/citizenship',
 }
 
 export default apiConfig
