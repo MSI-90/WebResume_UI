@@ -1,6 +1,6 @@
 import './Personal.css';
-import PersonalInfo from './modules/personal';
-import Citizenship from './modules/citizenship';
+import PersonalInfo from '../modules/personal';
+import Citizenship from '../modules/citizenship';
 import {useEffect, useState} from 'react'
 
 async function getBirthday() {
@@ -109,8 +109,8 @@ export default function Personal({formData, onFieldChange}) {
                       value={formData.dateOfBirth}
                       onChange={onFieldChange('dateOfBirth')}>
                 { Array.isArray(birthday.days) && birthday.days.length > 0 &&
-                  birthday.days.map((item, index) => (
-                    <option key={index} value={item}>{item}</option>
+                  birthday.days.map(item => (
+                    <option key={item} value={item}>{item}</option>
                   ))
                 }
               </select>

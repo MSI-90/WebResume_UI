@@ -1,7 +1,7 @@
 import './Resume.css';
 import ResumeWrapper from './ResumeWrapper';
 import ItemContent from "./ItemContent";
-import ResumeBackend from './modules/resume';
+import ResumeBackend from '../modules/resume';
 import {useState} from "react";
 
 export default function Resume({visible}) {

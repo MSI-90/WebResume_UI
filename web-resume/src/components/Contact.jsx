@@ -1,6 +1,6 @@
 import './Contact.css';
 import Social from './Social';
-import SocialVariant from "./modules/social";
+import SocialVariant from "../modules/social";
 import {useState} from "react";
 
 export default function Contact({formData, onFieldChange}) {

@@ -1,5 +1,4 @@
 import config from '../config/api_config';
-import errors from './errors';
 import axios from "axios";
 import ServerError from "./errors";
 
@@ -104,7 +103,7 @@ export default class ResumeBackend {
     }
 
     // Разрешаем буквы, цифры, пробел, пунктуацию (без &, <, >, ", ')
-    const regex = /^(?=.*\p{L})[\p{L}\p{N}\s!#\$%\(\)*+,\-./:;<=>?@[\\\]^_`{|}~]+$/u;
+    const regex =  /^(?=.*\p{L})[\p{L}\p{N}\s!#$%()*+,\-./:;<=>?@[\\\]^_`{|}~]+$/u;
     return regex.test(text);
   }
 

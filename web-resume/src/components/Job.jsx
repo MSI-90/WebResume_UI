@@ -1,9 +1,11 @@
 import './Job.css';
-import JobData from './modules/job';
+import JobData from '../modules/job';
 import {useEffect, useState} from "react";
 
 // TODO: Добавить стилизацию options внутри select-ов
 // TODO: Проанализировать дополнительно логику функций для вызова методов класса работы с API - job
+// TODO: Перенести чекбокс в другое место, либо предусмотреть момент что после сокрытия им его соседних
+//  элеменотв он не перемещался на стартовую позицию flex-start
 async function getCurrency(){
   const jobData = new JobData();
   return await jobData.getCurrency();
