@@ -98,7 +98,9 @@ export default function Job({formData, onFieldChange}) {
               <>
                 <div>
                   <label htmlFor="amount">Желаемая зарплата</label><br/>
-                  <input type="number" id="amount" spellCheck="false" value={formData.desiredSalary} onChange={onFieldChange('desiredSalary')} />
+                  <input type="number" id="amount" spellCheck="false"
+                         value={formData.desiredSalary}
+                         onChange={onFieldChange('desiredSalary')} />
                 </div>
                 <div>
                   <label htmlFor="currency">Валюта</label><br/>

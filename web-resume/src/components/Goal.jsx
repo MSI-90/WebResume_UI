@@ -14,7 +14,7 @@ export default function Goal({formData, onFieldChange}) {
 
   return (
     <>
-      <div data-section="purpose-resume" id="item-purpose">
+      <div className="purpose-resume" id="item-purpose">
         <div className="item-main-header">
           <h3>Цель резюме</h3>
         </div>

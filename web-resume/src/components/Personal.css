@@ -1,3 +1,7 @@
+.personal-info {
+    margin-bottom: 20px;
+}
+
 .item-personal-body {
     display: grid;
     grid-template-columns: 1fr 1fr;

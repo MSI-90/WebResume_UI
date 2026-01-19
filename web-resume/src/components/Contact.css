@@ -1,8 +1,10 @@
-.item-content .item-contact-body {
+
+.item-contact-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     width: 35vw;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 900px) {

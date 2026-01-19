@@ -57,15 +57,20 @@ export default class ResumeBackend {
   contactInfo() {
     if (!this.#formData) return null;
     if (!this.#formData.email) return null;
-    if (this.#formData.socialType !== null && this.#formData.socialLink?.length > 0)
+
+    if (this.#formData.socialLink?.length > 0) {
+      if(this.checkFieldAsNumber([this.#formData.socialType]) === false)
+        return null;
+
       return JSON.stringify({
         'Phone': this.#formData.tel ?? '',
         'Email': this.#formData.email,
         'SocialNetwork': {
-          'SocialType': this.#formData.socialType ?? 0,
+          'SocialType': Number.parseInt(this.#formData.socialType, 10),
           'SocialLink': this.#formData.socialLink ?? ''
         }
       })
+    }
 
     return JSON.stringify({
       'Phone': this.#formData.tel ?? '',
@@ -109,43 +114,74 @@ export default class ResumeBackend {
 
   jobInfo(){
     if (!this.#formData || !this.#formData.jobTitle) return null;
+
+    const checkNaN = this.checkFieldAsNumber([
+      this.#formData.employmentType,
+      this.#formData.workSchedule,
+      this.#formData.desiredSalary,
+      this.#formData.currency]
+    );
+    if (!checkNaN) return null;
+
     if (this.#formData.byAgreement)
       return JSON.stringify({
         'JobTitle': this.#formData.jobTitle  ,
         'DesiredSalary': null,
         'Currency': null,
         'ByAgreement': this.#formData.byAgreement,
-        'EmploymentType': Number.parseInt(this.#formData.employmentType),
-        'WorkSchedule': Number.parseInt(this.#formData.workSchedule)
+        'EmploymentType': Number.parseInt(this.#formData.employmentType, 10),
+        'WorkSchedule': Number.parseInt(this.#formData.workSchedule, 10)
       })
 
     return JSON.stringify({
       'JobTitle': this.#formData.jobTitle  ,
-      'DesiredSalary': Number.parseInt(this.#formData.desiredSalary),
-      'Currency': Number.parseInt(this.#formData.currency),
-      'ByAgreement': this.#formData.byAgreement,
-      'EmploymentType': Number.parseInt(this.#formData.employmentType),
-      'WorkSchedule': Number.parseInt(this.#formData.workSchedule)
+      'DesiredSalary': Number.parseInt(this.#formData.desiredSalary, 10),
+      'Currency': Number.parseInt(this.#formData.currency, 10),
+      'ByAgreement': isNaN(Number.parseInt(this.#formData.desiredSalary, 10)) ? true :this.#formData.byAgreement,
+      'EmploymentType': Number.parseInt(this.#formData.employmentType, 10),
+      'WorkSchedule': Number.parseInt(this.#formData.workSchedule, 10)
     })
   }
 
+  // TODO: пока пусть так, но далее пересмотреть избыточность проверки набора данных в массиве.
   personalInfo(){
     if (!this.#formData) return null;
 
-    const arr = [this.#formData.city, this.#formData.dateOfBirth, this.#formData.monthOfBirth,
-      this.#formData.moving, this.#formData.sex, this.#formData.marital];
+    const arr = [
+      this.#formData.city,
+      this.#formData.dateOfBirth,
+      this.#formData.monthOfBirth,
+      this.#formData.yearOfBirth
+    ];
 
-    if (arr.some(item => item == null || item === '')) return null;
+    if (arr.some(item => item === null || item === '')) return null;
+
+    const checkNaN = this.checkFieldAsNumber([
+      this.#formData.moving,
+      this.#formData.sex,
+      this.#formData.citizenship,
+      this.#formData.marital]
+    );
+
+    if (!checkNaN) return null;
 
     return JSON.stringify({
       'City': this.#formData.city,
       "IsDualCitizenship": this.#formData.isDualCitizenship,
-      'Birthday': `${this.#formData.yearOfBirth}-${this.#formData.monthOfBirth.padStart(2, '0')}-${this.#formData.dateOfBirth}`,
+      'Birthday': `${this.#formData.yearOfBirth}-${this.#formData.monthOfBirth
+        .toString().padStart(2, '0')}-${this.#formData.dateOfBirth
+        .toString().padStart(2, '0')}`,
       'IsChildren': this.#formData.children,
-      'Sex': Number.parseInt(this.#formData.sex),
-      'Moving': Number.parseInt(this.#formData.moving),
-      'MaritalStatus': Number.parseInt(this.#formData.marital),
+      'Sex': Number.parseInt(this.#formData.sex, 10),
+      'Moving': Number.parseInt(this.#formData.moving, 10),
+      'MaritalStatus': Number.parseInt(this.#formData.marital, 10),
     });
+  }
+
+  checkFieldAsNumber(args) {
+    if (!Array.isArray(args)) return false;
+
+    return !args.every(item => item === '' || item === undefined || item === null || isNaN(Number(item)));
   }
 
 }

@@ -91,7 +91,7 @@ export default function Personal({formData, onFieldChange}) {
 
   return (
     <>
-      <div data-section="personal-info" id="item-personal" className="section item-hidden">
+      <div className="personal-info" id="item-personal">
         <div className="item-main-header">
           <h3>Личная информация</h3>
         </div>

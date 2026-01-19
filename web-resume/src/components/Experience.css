@@ -1,0 +1,218 @@
+.item-experience-body label {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(0.7rem, 3vw, 0.9vw);
+    font-weight: 500;
+}
+
+.experience {
+    margin-bottom: 20px;
+}
+
+.item-experience-body #company, #job-title {
+    border: 3px solid #f48fb1;
+    border-radius: 7px;
+    box-sizing: border-box;
+    color: #44426c;
+    font-weight: 550;
+    padding: 10px 15px;
+    width: 96%;
+}
+
+.period {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 96%;
+    margin-top: 12px;
+}
+
+.item-1 {
+    flex: 1;
+}
+
+.item-2 {
+    flex: 1;
+    text-align: right;
+}
+
+:is(.item-1, .item-2) select {
+    border: 3px solid #f48fb1;
+    border-radius: 7px;
+    box-sizing: border-box;
+    color: #44426c;
+    font-weight: 550;
+    padding: 10px 15px;
+}
+
+#period-start-month, #period-end-month {
+    width: 50%;
+}
+
+#period-start-year, #period-end-year {
+    width: 40%;
+}
+
+#label-end {
+    display: block;
+    float: left;
+    margin-left: 30px;
+}
+
+.clear {
+    clear: both;
+}
+
+#job-now-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 95%;
+    margin-top: 5px;
+}
+
+#job-now-container .toggle-switch span{
+    font-size: clamp(0.7rem, 3vw, 0.9vw) !important;
+}
+
+#job-responsibilities-container {
+    margin-top: 20px;
+}
+
+#job-responsibilities-container label {
+    font-size: clamp(0.7rem, 3vw, 0.9vw) !important;
+}
+
+#job-achievements-container {
+    margin-top: 20px;
+}
+
+#job-achievements-container label {
+    font-size: clamp(0.7rem, 3vw, 0.9vw) !important;
+}
+
+.button-group {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+}
+
+.save-button, .remove-button {
+    border-radius: 7px;
+    font-size: clamp(0.7rem, 3vw, 0.9vw);
+    height: 50px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.save-button {
+    background-color: #f2ebf8;
+    border: 1px solid #e1dcf8;
+    color: brown;
+    width: 90%;
+}
+
+.remove-button {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    color: #c62828;
+    width: 90%;
+}
+
+.add-experience {
+    grid-column: 1 / -1;
+}
+
+.item-experience-body textarea{
+    background: #eff2f9;
+    border: 2px solid #f48fb1;
+    border-radius: 8px;
+    width: 90%;
+    padding: 16px;
+    color: #070127;
+    transition: 0.2s;
+    font: 17px "Roboto", sans-serif;
+    font-weight: 300;
+    min-height: 150px;
+}
+
+@media (max-width: 900px) {
+    .item-experience-body textarea {
+        width: 76%;
+    }
+}
+
+.add-button {
+    height: 50px;
+    border-radius: 7px;
+    font-size: clamp(0.7rem, 3vw, 0.9vw);
+    padding: 5px 15px;
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #2e7d32;
+    cursor: pointer;
+    font-weight: bold;
+    width: 95%;
+}
+
+@media (max-width: 1800px){
+    #label-end {
+        margin-left: 25px;
+    }
+}
+
+@media (max-width: 1540px) {
+    .period {
+        flex-direction: column;
+    }
+
+    .item-2 {
+        text-align: left;
+    }
+
+    #label-end {
+        margin-left: 0;
+    }
+
+    #period-start-year, #period-end-year {
+        width: 49%;
+    }
+}
+
+@media (max-width: 1185px) {
+    #period-start-month, #period-end-month {
+        width: 49%;
+    }
+
+    #period-start-year, #period-end-year {
+        width: 49%;
+    }
+}
+
+@media (max-width: 720px) {
+    .item-1 {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .item-2 {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    #period-start-month, #period-end-month {
+        width: 100%;
+    }
+
+    #period-start-year, #period-end-year {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .period {
+        flex-direction: column;
+    }
+}
