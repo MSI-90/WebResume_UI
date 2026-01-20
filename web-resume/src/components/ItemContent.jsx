@@ -2,7 +2,7 @@ import './ItemContent.css';
 import Fio from './FIO';
 import Contact from './Contact';
 import Goal from './Goal';
-import CreatorFooter from "./CreatorFooter";
+// import CreatorFooter from "./CreatorFooter";
 import Job from './Job';
 import Personal from './Personal';
 import Experience from "./Experience";
