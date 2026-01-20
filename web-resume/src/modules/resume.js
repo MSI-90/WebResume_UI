@@ -1,13 +1,14 @@
 import config from '../config/api_config';
 import axios from "axios";
 import ServerError from "./errors";
+import Photo from './photo';
 
 export default class ResumeBackend {
   #host;
   #port;
   #resume;
   #hostAndPort;
-  #formData
+  #formData;
   constructor(formData) {
     this.#host = config.HOST_URL;
     this.#port = config.BACKEND_HTTPS_PORT;
@@ -22,7 +23,6 @@ export default class ResumeBackend {
       throw new Error('Данные отсутствуют');
 
     try{
-      console.log(this.constructObjectData());
       const url = `${this.#hostAndPort + '/' + this.#resume}`;
       const response = await axios.post(url, this.constructObjectData(), {
         headers: {
@@ -45,7 +45,7 @@ export default class ResumeBackend {
       firstName: this.#formData.firstName,
       lastName: this.#formData.lastName,
       fatherName: this.#formData.fatherName,
-      photo: this.#formData.photo,
+      PhotoId: this.#formData.photo,
       ContactInfo: !this.contactInfo() ? null : this.contactInfo(),
       PurposeResume: this.goalInfo(),
       DesiredJob: this.jobInfo(),

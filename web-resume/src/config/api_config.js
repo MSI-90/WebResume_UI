@@ -14,6 +14,7 @@ const apiConfig = {
   BACKEND_API_PERSONAL_MARITAL: 'marital-status',
   BACKEND_API_PERSONAL_SEX: 'sex',
   BACKEND_API_CITIZENSHIP: 'api/citizenship',
+  BACKEND_API_PHOTO: 'api/photo',
 }
 
 export default apiConfig

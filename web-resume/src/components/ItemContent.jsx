@@ -7,17 +7,17 @@ import Job from './Job';
 import Personal from './Personal';
 import Experience from "./Experience";
 
-export default function ItemContent({activeSection, formData, onFieldChange}) {
+export default function ItemContent({activeSection, formData, dispatch}) {
   return (
     <>
       <div className="creator-item">
         <div className="item-content">
-          {activeSection === 'fio' && <Fio formData={formData} onFieldChange={onFieldChange} />}
-          {activeSection === 'contact' && <Contact formData={formData} onFieldChange={onFieldChange} />}
-          {activeSection === 'goal' && <Goal formData={formData} onFieldChange={onFieldChange} />}
-          {activeSection === 'jobInfo' && <Job formData={formData} onFieldChange={onFieldChange} />}
-          {activeSection === 'personalInfo' && <Personal formData={formData} onFieldChange={onFieldChange} />}
-          {activeSection === 'experience' && <Experience formData={formData} onFieldChange={onFieldChange} />}
+          {activeSection === 'fio' && <Fio formData={formData} dispatch={dispatch} />}
+          {/*{activeSection === 'contact' && <Contact formData={formData} onFieldChange={onFieldChange} />}*/}
+          {/*{activeSection === 'goal' && <Goal formData={formData} onFieldChange={onFieldChange} />}*/}
+          {/*{activeSection === 'jobInfo' && <Job formData={formData} onFieldChange={onFieldChange} />}*/}
+          {/*{activeSection === 'personalInfo' && <Personal formData={formData} onFieldChange={onFieldChange} />}*/}
+          {/*{activeSection === 'experience' && <Experience formData={formData} onFieldChange={onFieldChange} />}*/}
         </div>
         {/*<CreatorFooter />*/}
       </div>
