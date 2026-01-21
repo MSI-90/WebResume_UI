@@ -28,7 +28,7 @@
 .item-main-body .photo span {
     color: #9966FF;
     cursor: pointer;
-    font-size: clamp(0.7rem, 3vw, 1vw);
+    font-size: clamp(0.7rem, 3vw, 0.9vw);
     position: relative;
     left: 30px;
     top: 37px;

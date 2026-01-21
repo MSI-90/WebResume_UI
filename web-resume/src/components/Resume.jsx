@@ -1,12 +1,15 @@
 import './Resume.css';
 import ResumeWrapper from './ResumeWrapper';
 import ItemContent from "./ItemContent";
+import Dialog from "./Dialog";
 import ResumeBackend from '../modules/resume';
 import reducer from '../reducer';
 import {useReducer, useState} from "react";
 
 export default function Resume({visible}) {
   const [activeSection, setActiveSection] = useState('fio');
+  const [dialog, setDialog] = useState(false);
+  const [error, setError] = useState([]);
 
   let initialFormData = {
     // TODO: шаблон templateId стоит костыльно, пока что пусть так, после рассмотреть вопрос его установки в зависимости от типа (аккаунта или разовой акции?)
@@ -30,7 +33,7 @@ export default function Resume({visible}) {
     employmentType: 0,
     workSchedule: 0,
 
-    city:'',
+    city: '',
     isDualCitizenship: false,
     dateOfBirth: 1,
     monthOfBirth: 1,
@@ -39,7 +42,7 @@ export default function Resume({visible}) {
     sex: 0,
     marital: 0,
     citizenship: '1cbca6a4-dfbc-4d90-9758-0e87a66293b9',
-    children: false
+    children: false,
   };
 
   const[newFormData, dispatchResume] = useReducer(reducer, initialFormData);
@@ -52,7 +55,9 @@ export default function Resume({visible}) {
         const newResume = await resume.postResume();
         console.log(newResume);
       } catch (error) {
-        console.log(error.response);
+        setError(error);
+        setDialog(true);
+        console.log(error);
       }
   }
 
@@ -66,6 +71,14 @@ export default function Resume({visible}) {
           <button type='submit'>Отправить</button>
         </form>
       </div>
+      {dialog && <Dialog
+        header="Возникла ошибка"
+        modal={true}
+        onAction={(type) => {
+          setDialog(false);
+        }}>
+        {error}
+      </Dialog>}
     </>)
   )
 }

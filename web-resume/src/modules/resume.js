@@ -1,7 +1,7 @@
 import config from '../config/api_config';
 import axios from "axios";
 import ServerError from "./errors";
-import Photo from './photo';
+import {resume} from "react-dom/server";
 
 export default class ResumeBackend {
   #host;
@@ -23,17 +23,18 @@ export default class ResumeBackend {
       throw new Error('Данные отсутствуют');
 
     try{
+      console.log(this.constructObjectData());
       const url = `${this.#hostAndPort + '/' + this.#resume}`;
       const response = await axios.post(url, this.constructObjectData(), {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json'
         }});
       if (response.status === 201) {
         return response.data;
       }
     } catch(error) {
       if (error.response.status === 400) {
-        return new ServerError(error.response.data.errors).setErrors();
+        throw new ServerError(error.response.data.errors).setErrors();
       }
       throw error;
     }
@@ -50,7 +51,6 @@ export default class ResumeBackend {
       PurposeResume: this.goalInfo(),
       DesiredJob: this.jobInfo(),
       PersonalInfo: this.personalInfo(),
-      CitizenshipIds: [this.#formData.citizenship]
     };
   }
 
@@ -62,7 +62,7 @@ export default class ResumeBackend {
       if(this.checkFieldAsNumber([this.#formData.socialType]) === false)
         return null;
 
-      return JSON.stringify({
+      return ({
         'Phone': this.#formData.tel ?? '',
         'Email': this.#formData.email,
         'SocialNetwork': {
@@ -72,7 +72,7 @@ export default class ResumeBackend {
       })
     }
 
-    return JSON.stringify({
+    return ({
       'Phone': this.#formData.tel ?? '',
       'Email': this.#formData.email
     })
@@ -124,7 +124,7 @@ export default class ResumeBackend {
     if (!checkNaN) return null;
 
     if (this.#formData.byAgreement)
-      return JSON.stringify({
+      return ({
         'JobTitle': this.#formData.jobTitle  ,
         'DesiredSalary': null,
         'Currency': null,
@@ -133,7 +133,7 @@ export default class ResumeBackend {
         'WorkSchedule': Number.parseInt(this.#formData.workSchedule, 10)
       })
 
-    return JSON.stringify({
+    return ({
       'JobTitle': this.#formData.jobTitle  ,
       'DesiredSalary': Number.parseInt(this.#formData.desiredSalary, 10),
       'Currency': Number.parseInt(this.#formData.currency, 10),
@@ -165,9 +165,10 @@ export default class ResumeBackend {
 
     if (!checkNaN) return null;
 
-    return JSON.stringify({
+    return ({
       'City': this.#formData.city,
       "IsDualCitizenship": this.#formData.isDualCitizenship,
+      "CitizenshipIds": [this.#formData.citizenship],
       'Birthday': `${this.#formData.yearOfBirth}-${this.#formData.monthOfBirth
         .toString().padStart(2, '0')}-${this.#formData.dateOfBirth
         .toString().padStart(2, '0')}`,

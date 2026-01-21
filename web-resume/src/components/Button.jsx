@@ -1,0 +1,10 @@
+import './Button.css';
+import classNames from 'classnames';
+
+export default (props) => props.href ? (
+  <a {...props} className={classNames('Button', props.className)}>
+    {props.children}
+  </a>
+) : (
+  <button {...props} className={classNames('Button', props.className)} />
+);
