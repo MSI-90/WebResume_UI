@@ -23,7 +23,6 @@ export default class ResumeBackend {
       throw new Error('Данные отсутствуют');
 
     try{
-      console.log(this.constructObjectData());
       const url = `${this.#hostAndPort + '/' + this.#resume}`;
       const response = await axios.post(url, this.constructObjectData(), {
         headers: {
@@ -63,7 +62,7 @@ export default class ResumeBackend {
         return null;
 
       return ({
-        'Phone': this.#formData.tel ?? '',
+        'Phone': this.#formData.phone ?? null,
         'Email': this.#formData.email,
         'SocialNetwork': {
           'SocialType': Number.parseInt(this.#formData.socialType, 10),
@@ -73,7 +72,7 @@ export default class ResumeBackend {
     }
 
     return ({
-      'Phone': this.#formData.tel ?? '',
+      'Phone': this.#formData.phone ?? null,
       'Email': this.#formData.email
     })
   }

@@ -33,7 +33,7 @@
 }
 
 .DialogBodyContent span, p{
-    font-size: clamp(0.7rem, 3vw, 0.9vw);
+    font-size: clamp(0.9rem, 3vw, 0.9vw);
 }
 
 .Dialog .DialogFooter {

@@ -17,6 +17,27 @@ export default function reducer(state, action) {
     case 'added_female':
       newState[action.payload.field] = action.payload.value;
       return newState;
+    case 'change-goal':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-salary':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-currency':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-by-agreement':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-employmentType':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-jobTitle':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-workSchedule':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
     case 'change-city':
       newState[action.payload.field] = action.payload.value;
       return newState;
@@ -43,7 +64,18 @@ export default function reducer(state, action) {
       return newState;
     case 'change-children':
       newState[action.payload.field] = action.payload.value;
-      console.log(newState);
+      return newState;
+    case 'change-phone':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-email':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'select-social':
+      newState[action.payload.field] = action.payload.value;
+      return newState;
+    case 'change-nick':
+      newState[action.payload.field] = action.payload.value;
       return newState;
     default:
       return state;

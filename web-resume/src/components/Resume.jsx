@@ -21,11 +21,13 @@ export default function Resume({visible}) {
     photo: null,
     photoLink: '',
 
-    tel: '',
+    phone: null,
     email: '',
     socialType: 0,
     socialLink: '',
+
     goal: '',
+
     jobTitle: '',
     desiredSalary: '',
     currency: 810,

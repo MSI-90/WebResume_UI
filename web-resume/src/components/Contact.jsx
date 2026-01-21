@@ -3,21 +3,24 @@ import Social from './Social';
 import SocialVariant from "../modules/social";
 import {useState} from "react";
 
-export default function Contact({formData, onFieldChange}) {
+export default function Contact({formData, dispatch}) {
   const [ignoreSocial, setIgnoreSocial] = useState(false);
   const [socialList, setSocialList] = useState([]);
   const [error, setError] = useState(false);
 
-  let socialArgs = {
+  const socialArgs = {
     socialList,
     value: formData.socialType,
-    onChange: onFieldChange('socialType'),
     nickValue: formData.socialLink,
-    onNickChange: onFieldChange('socialLink'),
+    dispatch
   }
 
   const setSocial = async() => {
     if(ignoreSocial){
+
+      formData.socialType = 0;
+      formData.socialLink = '';
+
       setIgnoreSocial(false);
       setSocialList([]);
       setError(false);
@@ -50,13 +53,33 @@ export default function Contact({formData, onFieldChange}) {
         <div className="item-contact-body">
           <div>
             <label htmlFor="phone">Номер телефона</label><br/>
-            <input type="tel" id="phone" name='phone' spellCheck="false" autoComplete='tel' placeholder='+79997776655'
-                   value={formData.tel} onChange={onFieldChange('tel')} />
+            <input type="tel"
+                   id="phone"
+                   spellCheck="false"
+                   name='phone'
+                   autoComplete='tel'
+                   placeholder='+79997776655'
+                   value={formData.tel}
+                   onChange={(event)=>{
+                     dispatch({
+                       type: 'change-phone',
+                       payload: { field: event.target.name, value: event.target.value }
+                     });
+                   }} />
           </div>
           <div>
             <label htmlFor="email">Электронная почта</label><br/>
-            <input type="email" id="email" name='email' required spellCheck="false" autoComplete='email' placeholder='example@email.ru'
-                   value={formData.email} onChange={onFieldChange('email')} />
+            <input type="email"
+                   id="email"
+                   spellCheck="false"
+                   name='email'
+                   required autoComplete='email'
+                   placeholder='example@email.ru'
+                   value={formData.email} onChange={(event)=>{
+                     dispatch({
+                       type: 'change-email',
+                       payload: { field: event.target.name, value: event.target.value }
+                     })}} />
           </div>
           {ignoreSocial && (
             <Social {...socialArgs} />

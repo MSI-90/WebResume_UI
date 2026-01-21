@@ -1,7 +1,7 @@
 import './Goal.css';
 import {useRef, useState} from 'react'
 
-export default function Goal({formData, onFieldChange}) {
+export default function Goal({formData, dispatch}) {
   const [goal, setGoal] = useState(false);
   const [goalValue, setGoalValue] = useState('');
 
@@ -42,11 +42,17 @@ export default function Goal({formData, onFieldChange}) {
           <div className="item-purpose-body">
             <label htmlFor="purpose"></label>
             <div className="textarea-wrapper">
-              <textarea id="purpose" spellCheck="true"
-                        maxLength={maxLengthValue}
-                        value={formData.goal}
-                        placeholder={`Введите не более ${maxLengthValue} символов`}
-                        onChange={onFieldChange('goal')}>
+              <textarea
+                id="purpose"
+                name="goal"
+                spellCheck="true"
+                maxLength={maxLengthValue}
+                value={formData.goal}
+                placeholder={`Введите не более ${maxLengthValue} символов`}
+                onChange={(event) => dispatch({
+                  type: 'change-goal',
+                  payload: {field:event.target.name, value: event.target.value},
+                })}>
               </textarea>
               <div className="char-counter">
                 {formData.goal.length}/{maxLengthValue}

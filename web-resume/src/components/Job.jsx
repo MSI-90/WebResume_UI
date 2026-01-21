@@ -21,7 +21,7 @@ async function getEmploymentType() {
   return await jobData.getEmploymentType();
 }
 
-export default function Job({formData, onFieldChange}) {
+export default function Job({formData, dispatch}) {
   const [currencyList, setCurrencyList ] = useState([]);
   const [workSchedule, setWorkSchedule] = useState([]);
   const [employmentType, setEmploymentType] = useState([]);
@@ -90,7 +90,18 @@ export default function Job({formData, onFieldChange}) {
         <div className="item-job-body">
           <div>
             <label htmlFor="job">Должность</label><br/>
-            <input type="text" id="job" spellCheck="false" value={formData.jobTitle} onChange={onFieldChange('jobTitle')} />
+            <input
+              type="text"
+              id="job"
+              name="jobTitle"
+              spellCheck="false"
+              value={formData.jobTitle}
+              onChange={(event)=>{
+                dispatch({
+                  type: 'change-jobTitle',
+                  payload: {field: event.target.name, value: event.target.value}
+                })
+              }} />
           </div>
           <br/>
           <div className="desired-job-info">
@@ -98,13 +109,31 @@ export default function Job({formData, onFieldChange}) {
               <>
                 <div>
                   <label htmlFor="amount">Желаемая зарплата</label><br/>
-                  <input type="number" id="amount" spellCheck="false"
-                         value={formData.desiredSalary}
-                         onChange={onFieldChange('desiredSalary')} />
+                  <input
+                    type="number"
+                    id="amount"
+                    name="desiredSalary"
+                    spellCheck="false"
+                    value={formData.desiredSalary}
+                    onChange={(event) => {
+                      dispatch({
+                        type: 'change-salary',
+                        payload: {field:event.target.name, value: event.target.value}
+                      })
+                    }} />
                 </div>
                 <div>
                   <label htmlFor="currency">Валюта</label><br/>
-                  <select id="currency" value={formData.currency} onChange={onFieldChange('currency')}>
+                  <select
+                    id="currency"
+                    name="currency"
+                    value={formData.currency}
+                    onChange={(event)=>{
+                      dispatch({
+                        type: 'change-currency',
+                        payload: {field:event.target.name, value: event.target.value}
+                      })
+                    }}>
                     { Array.isArray(currencyList) && currencyList.length > 0 &&
                       currencyList.map((item) => (
                         <option key={item.currencyCode} value={item.currencyCode}>{item.currencyNameRu}</option>
@@ -117,14 +146,33 @@ export default function Job({formData, onFieldChange}) {
             <div className="agreement">
               <label className="agreement-label">По договорённости</label>
               <label className="checkbox-wrapper">
-                <input type="checkbox" id="by-agreement" checked={formData.byAgreement} onChange={onFieldChange('byAgreement')} />
+                <input
+                  type="checkbox"
+                  id="by-agreement"
+                  name="byAgreement"
+                  checked={formData.byAgreement}
+                  onChange={(event)=>{
+                    dispatch({
+                      type: 'change-by-agreement',
+                      payload: {field:event.target.name, value: event.target.checked}
+                    })
+                  }} />
                 <span className="checkmark"></span>
               </label>
             </div>
             <div>
               <br/>
               <label htmlFor="employment-type">Тип занятости</label><br/>
-              <select id="employment-type" value={formData.employmentType} onChange={onFieldChange('employmentType')}>
+              <select
+                id="employment-type"
+                name="employmentType"
+                value={formData.employmentType}
+                onChange={(event)=>{
+                  dispatch({
+                    type: 'change-employmentType',
+                    payload: {field:event.target.name, value: event.target.value}
+                  })
+                }}>
                 { Array.isArray(employmentType) && employmentType.length > 0 &&
                   employmentType.map((item) => (
                     <option key={item.id} value={item.id}>{item.employmentTypeNameRu}</option>
@@ -134,7 +182,17 @@ export default function Job({formData, onFieldChange}) {
             <div>
               <br/>
               <label htmlFor="work-schedule">График работы</label><br/>
-              <select id="work-schedule" spellCheck="false" value={formData.workSchedule} onChange={onFieldChange('workSchedule')}>
+              <select
+                id="work-schedule"
+                name="workSchedule"
+                spellCheck="false"
+                value={formData.workSchedule}
+                onChange={(event)=>{
+                  dispatch({
+                    type: 'change-workSchedule',
+                    payload: {field:event.target.name, value: event.target.value}
+                  })
+                }}>
                 { Array.isArray(workSchedule) && workSchedule.length > 0 &&
                   workSchedule.map((item) => (
                     <option key={item.id} value={item.id}>{item.workScheduleNameRu}</option>

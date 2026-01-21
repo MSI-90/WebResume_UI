@@ -21,7 +21,7 @@ const CustomSingleValue = ({ children, data }) => (
   </div>
 );
 
-export default function Social({socialList, value, onChange, nickValue, onNickChange}) {
+export default function Social({socialList, value, nickValue, dispatch}) {
   const options = socialList.map((item) => ({
     value: item.number,
     label: item.displayName,
@@ -40,25 +40,19 @@ export default function Social({socialList, value, onChange, nickValue, onNickCh
 
   const selectedOption = options.find((option) => option.value === value) || null;
 
-  const handleChange = (selected) => {
-    const syntheticEvent = {
-      target: {
-        name: 'social',
-        value: selected ? selected.value : null
-      }
-    };
-    onChange(syntheticEvent);
-  };
-
   return (
     <>
       <div id='soc'>
         <label htmlFor='select'>Социальная сеть</label><br />
         <Select
           id='select'
+          name='socialType'
           key={socialList.length}
           value={selectedOption}
-          onChange={handleChange}
+          onChange={(event) => dispatch({
+            type: 'select-social',
+            payload: {field: 'socialType', value: event.value}}
+          )}
           options={options}
           components={{
             Option: CustomOption,
@@ -67,9 +61,15 @@ export default function Social({socialList, value, onChange, nickValue, onNickCh
       </div>
       <div>
         <label>Профиль в соц.сети</label><br />
-        <input type='text' id='soc-link' placeholder='@'
+        <input type='text'
+               id='soc-link'
+               name='socialLink'
+               placeholder='@'
                value={nickValue}
-               onChange={onNickChange}
+               onChange={(event) => dispatch({
+                 type: 'change-nick',
+                 payload: {field: event.target.name, value: event.target.value}
+               })}
                required>
         </input>
       </div>
