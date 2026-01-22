@@ -6,13 +6,9 @@ export default class ServerError {
   }
 
   setErrors(){
-    if (!this.#errors)
-      return;
-
-    const errorValues = Object.values(this.#errors);
-    if (errorValues.length < 0)
-      return;
-
-    return errorValues;
+    if (!this.#errors) return;
+    if (Array.isArray(this.#errors)) return this.#errors;
+    if (typeof this.#errors === "object") return Object.values(this.#errors);
+    return [this.#errors];
   }
 }

@@ -24,6 +24,7 @@ export default function Dialog(props) {
         onAction('dismiss');
       }
     }
+
     if (modal) {
       document.body.classList.add('DialogModalOpen');
       if (extendedDismiss) {

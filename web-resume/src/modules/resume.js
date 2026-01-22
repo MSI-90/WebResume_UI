@@ -32,10 +32,21 @@ export default class ResumeBackend {
         return response.data;
       }
     } catch(error) {
-      if (error.response.status === 400) {
-        throw new ServerError(error.response.data.errors).setErrors();
+      if (error.response) {
+        if (error.response.status === 400) {
+          throw new ServerError(error.response.data.errors).setErrors();
+        }
+
+        if (error.response.status >= 500) {
+          throw new ServerError('Ошибка на стороне сервера').setErrors();
+        }
+
+      } else if (error.request) {
+        throw new ServerError('Ошибка сети, удаленный сервер не отвечает').setErrors();
+
+      } else {
+        throw new ServerError(error.message).setErrors();
       }
-      throw error;
     }
   }
 

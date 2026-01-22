@@ -6,6 +6,12 @@
     height: 20vw;
 }
 
+@media (max-width: 1500px) {
+    #photo-sp {
+        left: 0;
+    }
+}
+
 @media (max-width: 900px) {
     .item-content .item-main-body {
         grid-template-columns: 1fr;
