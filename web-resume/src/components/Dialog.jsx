@@ -7,7 +7,6 @@ export default function Dialog(props) {
     header,
     modal = false,
     extendedDismiss = true,
-    confirmLabel = 'Принять',
     onAction = () => {},
     hasCancel = true,
   } = props;

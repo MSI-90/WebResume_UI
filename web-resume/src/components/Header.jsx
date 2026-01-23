@@ -30,9 +30,9 @@ export default function Header() {
             </svg>
           </div>
           <nav className="menu">
-            <a href="#">Шаблоны</a>
-            <a href="#">Шаблоны</a>
-            <a href="#">Шаблоны</a>
+            <a href="/">Шаблоны</a>
+            <a href="/1">Шаблоны</a>
+            <a href="/2">Шаблоны</a>
           </nav>
           <nav className="menu menu-right">
             <div className="button-group">

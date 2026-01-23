@@ -115,8 +115,8 @@ export default function Personal({formData, dispatch}) {
                         payload: { field: event.target.name, value: event.target.value }
                       })}
                       >
-                      { Array.isArray(birthday.days) && birthday.days.length > 0 &&
-                        birthday.days.map(item => (
+                      { Array.isArray(birthday?.days) && birthday?.days.length > 0 &&
+                        birthday?.days.map(item => (
                           <option key={item} value={item}>{item}</option>
                         ))
                       }
@@ -128,8 +128,8 @@ export default function Personal({formData, dispatch}) {
                         payload: { field: event.target.name, value: event.target.value }
                       })}
                       >
-                      { Array.isArray(birthday.months) && birthday.months.length > 0 &&
-                        birthday.months.map((item) => (
+                      { Array.isArray(birthday?.months) && birthday?.months.length > 0 &&
+                        birthday?.months.map((item) => (
                           <option key={item.id} value={item.id}>{item.name}</option>
                         ))
                       }
@@ -141,8 +141,8 @@ export default function Personal({formData, dispatch}) {
                         payload: { field: event.target.name, value: event.target.value }
                       })}
                       >
-                      { Array.isArray(birthday.years) && birthday.years.length > 0 &&
-                        birthday.years.map((item) => (
+                      { Array.isArray(birthday?.years) && birthday?.years.length > 0 &&
+                        birthday?.years.map((item) => (
                           <option key={item} value={item}>{item}</option>
                         ))
                       }

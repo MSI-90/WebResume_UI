@@ -8,6 +8,12 @@
     margin-bottom: 20px;
 }
 
+.accord {
+    max-height: 70px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
 .item-experience-body #company, #job-title {
     border: 3px solid #f48fb1;
     border-radius: 7px;
@@ -154,7 +160,7 @@
     color: #2e7d32;
     cursor: pointer;
     font-weight: bold;
-    width: 95%;
+    width: 96%;
 }
 
 @media (max-width: 1800px){
@@ -179,6 +185,24 @@
     #period-start-year, #period-end-year {
         width: 49%;
     }
+
+    .remove-button {
+        width: 93%;
+    }
+
+    .add-button {
+        width: 96%;
+    }
+}
+
+@media (max-width: 1350px) {
+    .remove-button {
+        width: 94%;
+    }
+
+    .add-button {
+        width: 96%;
+    }
 }
 
 @media (max-width: 1185px) {
@@ -188,6 +212,14 @@
 
     #period-start-year, #period-end-year {
         width: 49%;
+    }
+
+    .remove-button {
+        width: 96%;
+    }
+
+    .add-button {
+        width: 98%;
     }
 }
 

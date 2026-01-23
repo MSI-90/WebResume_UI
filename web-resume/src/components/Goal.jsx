@@ -1,16 +1,13 @@
 import './Goal.css';
-import {useRef, useState} from 'react'
+import {useState} from 'react'
 
 export default function Goal({formData, dispatch}) {
   const [goal, setGoal] = useState(false);
-  const [goalValue, setGoalValue] = useState('');
 
   const maxLengthValue = 500;
 
-  const goalChange = () => {
-    setGoalValue( '');
+  const goalChange = () =>
     setGoal(prev => !prev);
-  }
 
   return (
     <>

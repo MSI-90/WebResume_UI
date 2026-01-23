@@ -1,7 +1,6 @@
 import config from '../config/api_config';
 import axios from "axios";
 import ServerError from "./errors";
-import {resume} from "react-dom/server";
 
 export default class ResumeBackend {
   #host;

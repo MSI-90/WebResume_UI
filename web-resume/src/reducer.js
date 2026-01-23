@@ -81,7 +81,3 @@ export default function reducer(state, action) {
       return state;
   }
 }
-
-const clone = (o) => {
-  return JSON.parse(JSON.stringify(o));
-}
