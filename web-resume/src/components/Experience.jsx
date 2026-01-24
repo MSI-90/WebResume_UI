@@ -56,11 +56,21 @@ export default function Experience({formData, formDispatch}) {
 
   const saveExperience = () => {
     setAsAccordion(prev => !prev);
-    experienceCollection(newExperienceItemState)
+    experienceCollection(newExperienceItemState);
   }
 
   const experienceCollection = (experienceItemState) => {
-    const expItem = []
+    let item = [...expItem];
+    item.push(experienceItemState);
+    setExpItem(item);
+  }
+
+  const addExperience = () => {
+    newExperienceItemState.company = '';
+    newExperienceItemState.jobTitle = '';
+    newExperienceItemState.jobResponsibilities = '';
+    newExperienceItemState.jobAchievements = '';
+    setAsAccordion(false);
   }
 
   const changeWorkNow = (event) => {
@@ -97,6 +107,15 @@ export default function Experience({formData, formDispatch}) {
         <div className="item-main-header">
           <h3>Опыт работы</h3>
         </div>
+
+        {expItem.length > 0 && (
+          <div>
+            {expItem.map((item, index) => (
+              <p>{item.jobTitle}</p>
+            ))}
+          </div>
+        )}
+
         <div className="item-experience-body">
           <div className={classNames({'accord': asAccordion})}>
             <div>
@@ -106,6 +125,7 @@ export default function Experience({formData, formDispatch}) {
                 name="company"
                 id="company"
                 spellCheck="false"
+                value={newExperienceItemState.company}
                 onChange={(event)=>
                   dispatchExperienceItem({
                     type: 'company',
@@ -122,6 +142,7 @@ export default function Experience({formData, formDispatch}) {
                 id="job-title"
                 name="jobTitle"
                 spellCheck="false"
+                value={newExperienceItemState.jobTitle}
                 onChange={(event)=>
                   dispatchExperienceItem({
                     type: 'jobTitle',
@@ -230,6 +251,7 @@ export default function Experience({formData, formDispatch}) {
                 spellCheck="false"
                 id="job-responsibilities"
                 name="jobResponsibilities"
+                value={newExperienceItemState.jobResponsibilities}
                 onChange={(event)=>
                   dispatchExperienceItem({
                     type: 'jobResponsibilities',
@@ -243,6 +265,7 @@ export default function Experience({formData, formDispatch}) {
                 spellCheck="false"
                 id="job-achievements"
                 name="jobAchievements"
+                value={newExperienceItemState.jobAchievements}
                 onChange={(event) =>
                 dispatchExperienceItem({
                   type: 'jobAchievements',
@@ -259,12 +282,26 @@ export default function Experience({formData, formDispatch}) {
               >
                 Сохранить
               </button>
-              <button type={"button"} className="remove-button">Удалить</button>
+              <button
+                type={"button"}
+                className="remove-button"
+                onClick={()=> setAsAccordion(true)}
+              >
+                Удалить
+              </button>
             </div>
 
           </div>
           <div className="add-experience">
-            <button type={"button"} className="add-button">Добавить</button>
+            <button
+              type={"button"}
+              className="add-button"
+              onClick={(event)=>{
+                addExperience();
+              }}
+            >
+              Добавить
+            </button>
           </div>
         </div>
       </div>
