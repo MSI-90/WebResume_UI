@@ -3,7 +3,7 @@ import ResumeWrapper from './ResumeWrapper';
 import ItemContent from "./ItemContent";
 import Dialog from "./Dialog";
 import ResumeBackend from '../modules/resume';
-import reducer from '../reducer';
+import resumeReducer from '../reducers/resumeReducer';
 import {useReducer, useState} from "react";
 
 export default function Resume({visible}) {
@@ -47,7 +47,7 @@ export default function Resume({visible}) {
     children: false,
   };
 
-  const[newFormData, dispatchResume] = useReducer(reducer, initialFormData);
+  const[newFormData, dispatchResume] = useReducer(resumeReducer, initialFormData);
 
   // TODO: убрать отладочный вывод в консоль
   const submitForm = async(e) => {

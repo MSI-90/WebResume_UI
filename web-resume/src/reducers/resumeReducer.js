@@ -1,4 +1,4 @@
-export default function reducer(state, action) {
+export default function resumeReducer(state, action) {
   let newState = {...state};
   switch(action.type) {
     case 'add_photo':

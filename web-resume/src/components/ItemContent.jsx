@@ -17,7 +17,7 @@ export default function ItemContent({activeSection, formData, dispatch}) {
           {activeSection === 'goal' && <Goal formData={formData} dispatch={dispatch} />}
           {activeSection === 'jobInfo' && <Job formData={formData} dispatch={dispatch} />}
           {activeSection === 'personalInfo' && <Personal formData={formData} dispatch={dispatch} />}
-          {activeSection === 'experience' && <Experience formData={formData} dispatch={dispatch} />}
+          {activeSection === 'experience' && <Experience formData={formData} formDispatch={dispatch} />}
         </div>
         {/*<CreatorFooter />*/}
       </div>

@@ -98,135 +98,167 @@ export default function Personal({formData, dispatch}) {
         <div className="item-personal-body">
           <div>
             <label htmlFor="city">Город проживания</label><br/>
-            <input type="text" id="city" spellCheck="false" name="city"
-                   value={formData.city}
-                   onChange={(event) => dispatch({
-                     type: 'change-city',
-                     payload: { field: event.target.name, value: event.target.value }
-                 })} />
+            <input
+              type="text"
+              id="city"
+              spellCheck="false"
+              name="city"
+              value={formData.city}
+              onChange={(event) => dispatch({
+                type: 'change-city',
+                payload: { field: event.target.name, value: event.target.value }
+              })} />
           </div>
           <div>
             <label htmlFor="birthday-day">Дата рождения</label><br/>
             <div className="birthday-selectors">
-              <select id="birthday-day" required spellCheck="false" name = "dateOfBirth"
-                      value={formData.dateOfBirth}
-                      onChange={(event) => dispatch({
-                        type: 'change-dayOfBirth',
-                        payload: { field: event.target.name, value: event.target.value }
-                      })}
-                      >
-                      { Array.isArray(birthday?.days) && birthday?.days.length > 0 &&
-                        birthday?.days.map(item => (
-                          <option key={item} value={item}>{item}</option>
-                        ))
-                      }
+              <select
+                id="birthday-day"
+                required spellCheck="false"
+                name = "dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={(event) => dispatch({
+                  type: 'change-dayOfBirth',
+                  payload: { field: event.target.name, value: event.target.value }
+                })}
+                >
+                { Array.isArray(birthday?.days) && birthday?.days.length > 0 &&
+                  birthday?.days.map(item => (
+                    <option key={item} value={item}>{item}</option>
+                  ))
+                }
               </select>
-              <select id="birthday-month" required spellCheck="false" name = "monthOfBirth"
-                      value={formData.monthOfBirth}
-                      onChange={(event) => dispatch({
-                        type: 'change-monthOfBirth',
-                        payload: { field: event.target.name, value: event.target.value }
-                      })}
-                      >
-                      { Array.isArray(birthday?.months) && birthday?.months.length > 0 &&
-                        birthday?.months.map((item) => (
-                          <option key={item.id} value={item.id}>{item.name}</option>
-                        ))
-                      }
+              <select
+                id="birthday-month"
+                required
+                spellCheck="false"
+                name = "monthOfBirth"
+                value={formData.monthOfBirth}
+                onChange={(event) =>
+                  dispatch({
+                    type: 'change-monthOfBirth',
+                    payload: { field: event.target.name, value: event.target.value }
+                  })}
+                >
+                { Array.isArray(birthday?.months) && birthday?.months.length > 0 &&
+                  birthday?.months.map((item) => (
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                  ))
+                }
               </select>
-              <select id="birthday-year" required spellCheck="false" name= "yearOfBirth"
-                      value={formData.yearOfBirth}
-                      onChange={(event) => dispatch({
-                        type: 'change-yearOfBirth',
-                        payload: { field: event.target.name, value: event.target.value }
-                      })}
-                      >
-                      { Array.isArray(birthday?.years) && birthday?.years.length > 0 &&
-                        birthday?.years.map((item) => (
-                          <option key={item} value={item}>{item}</option>
-                        ))
-                      }
+              <select
+                id="birthday-year"
+                required
+                spellCheck="false"
+                name="yearOfBirth"
+                value={formData.yearOfBirth}
+                onChange={(event) => dispatch({
+                  type: 'change-yearOfBirth',
+                  payload: { field: event.target.name, value: event.target.value }
+                })}
+                >
+                { Array.isArray(birthday?.years) && birthday?.years.length > 0 &&
+                  birthday?.years.map((item) => (
+                    <option key={item} value={item}>{item}</option>
+                  ))
+                }
               </select>
             </div>
           </div>
           <div>
             <br/>
             <label htmlFor="moving">Переезд</label><br/>
-            <select id="moving" spellCheck="false" name= "moving"
-                    value={formData.moving}
-                    onChange={(event) => dispatch({
-                      type: 'change-moving',
-                      payload: { field: event.target.name, value: event.target.value }
-                    })}
-                    >
-                    { Array.isArray(movingVariant) && movingVariant.length > 0 &&
-                      movingVariant.map(item => (
-                        <option key={item.id} value={item.id}>{item.variantRu}</option>
-                      ))
-                    }
+            <select
+              id="moving"
+              spellCheck="false"
+              name= "moving"
+              value={formData.moving}
+              onChange={(event) =>
+                dispatch({
+                  type: 'change-moving',
+                  payload: { field: event.target.name, value: event.target.value }
+                })}
+              >
+              { Array.isArray(movingVariant) && movingVariant.length > 0 &&
+                movingVariant.map(item => (
+                  <option key={item.id} value={item.id}>{item.variantRu}</option>
+                ))
+              }
             </select>
           </div>
           <div>
             <br/>
             <label htmlFor="sex">Пол</label><br/>
-            <select id="sex" spellCheck="false" name = "sex"
-                    value={formData.sex}
-                    onChange={(event) => dispatch({
-                      type: 'change-sex',
-                      payload: { field: event.target.name, value: event.target.value }
-                    })}
-                    >
-                    { Array.isArray(sexVariant) && sexVariant.length > 0 &&
-                      sexVariant.map(item => (
-                        <option key={item.id} value={item.id}>{item.sexRu}</option>
-                      ))
-                    }
+            <select
+              id="sex"
+              spellCheck="false"
+              name = "sex"
+              value={formData.sex}
+              onChange={(event) => dispatch({
+                type: 'change-sex',
+                payload: { field: event.target.name, value: event.target.value }
+              })}
+              >
+              { Array.isArray(sexVariant) && sexVariant.length > 0 &&
+                sexVariant.map(item => (
+                  <option key={item.id} value={item.id}>{item.sexRu}</option>
+                ))
+              }
             </select>
           </div>
           <div>
             <br/>
             <label htmlFor="citizenship">Гражданство</label><br/>
-            <select id="citizenship" spellCheck="false" name= "citizenship"
-                    value={formData.citizenship}
-                    onChange={(event)=> dispatch({
-                      type: 'change-citizenship',
-                      payload: { field: event.target.name, value: event.target.value }
-                    })}
-                    >
-                    { Array.isArray(citizenship) && citizenship.length > 0 &&
-                      citizenship.map(item => (
-                        <option key={item.id} value={item.id}>{item.countryNameRu}</option>
-                      ))
-                    }
+            <select
+              id="citizenship"
+              spellCheck="false"
+              name= "citizenship"
+              value={formData.citizenship}
+              onChange={(event)=> dispatch({
+                type: 'change-citizenship',
+                payload: { field: event.target.name, value: event.target.value }
+              })}
+              >
+              { Array.isArray(citizenship) && citizenship.length > 0 &&
+                citizenship.map(item => (
+                  <option key={item.id} value={item.id}>{item.countryNameRu}</option>
+                ))
+              }
             </select>
           </div>
           <div>
             <br/>
             <label htmlFor="marital-status">Семейное положение</label><br/>
-            <select id="marital-status" spellCheck="false" name= "marital"
-                    value={formData.marital}
-                    onChange={(event)=> dispatch({
-                      type: 'change-maritalStatus',
-                      payload: { field: event.target.name, value: event.target.value }
-                    })}
-                    >
-                    { Array.isArray(maritalStatus) && maritalStatus.length > 0 &&
-                      maritalStatus.map(item => (
-                        <option key={item.id} value={item.id}>{item.statusRu}</option>
-                      ))
-                    }
+            <select
+              id="marital-status"
+              spellCheck="false"
+              name= "marital"
+              value={formData.marital}
+              onChange={(event)=> dispatch({
+                type: 'change-maritalStatus',
+                payload: { field: event.target.name, value: event.target.value }
+              })}
+              >
+              { Array.isArray(maritalStatus) && maritalStatus.length > 0 &&
+                maritalStatus.map(item => (
+                  <option key={item.id} value={item.id}>{item.statusRu}</option>
+                ))
+              }
             </select>
           </div>
           <div>
             <div className="toggle-switch">
-              <input type="checkbox" id="hasChildren" name= "children"
-                     className="toggle-input"
-                     value={formData.children}
-                     onChange={(event)=> dispatch({
-                       type: 'change-children',
-                       payload: { field: event.target.name, value: event.target.checked }
-                     })}
-                      />
+              <input
+                type="checkbox"
+                id="hasChildren"
+                name= "children"
+                className="toggle-input"
+                value={formData.children}
+                onChange={(event)=> dispatch({
+                  type: 'change-children',
+                  payload: { field: event.target.name, value: event.target.checked }
+                })}
+              />
               <label htmlFor="hasChildren" className="toggle-label"></label>
               <span>У меня есть дети</span>
             </div>
