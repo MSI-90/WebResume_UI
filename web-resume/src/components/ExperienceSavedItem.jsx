@@ -19,7 +19,9 @@ export default function ExpSavedItem(props){
             <p>{item.jobTitle}</p>
             <div className="experience-row">
               <span className="experience-dates">
-                {item.periodStartMonthName} {item.periodStartYear} – {item.periodEndMonthName} {item.periodEndYear}
+                {item.periodStartMonthName} {item.periodStartYear} – {item.workNow
+                  ? 'наст. вр.'
+                  : `${item.periodEndMonthName} ${item.periodEndYear}`}
               </span>
 
               <div className="experience-actions">

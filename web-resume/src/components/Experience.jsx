@@ -32,15 +32,6 @@ export default function Experience({formData, formDispatch}) {
   }
   const [newExperienceItemState, dispatchExperienceItem] = useReducer(experienceReducer, initialExperienceItem);
 
-  // TODO: снести после реализации
-  useEffect(() => {
-    console.log(newExperienceItemState);
-  },[newExperienceItemState])
-
-  useEffect(()=>{
-    console.log(expItem);
-  },[expItem])
-
   useEffect(() => {
     let isMounted = true;
 

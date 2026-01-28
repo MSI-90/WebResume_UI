@@ -30,8 +30,6 @@ export default function experienceReducer(state = {}, action) {
       return newState;
     case 'workNow':
       newState.workNow = action.payload;
-      newState.periodEndMonthName = 'наст.'
-      newState.periodEndYear = 'вр.';
       return newState;
     case 'editItem':
       newState = {...action.payload};

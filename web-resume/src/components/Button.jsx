@@ -1,10 +1,12 @@
 import './Button.css';
 import classNames from 'classnames';
 
-export default (props) => props.href ? (
-  <a {...props} className={classNames(props.baseButton && 'Button', props.className)}>
-    {props.children}
-  </a>
-) : (
-  <button {...props} className={classNames(props.baseButton && 'Button', props.className)} />
-);
+export default function Button({baseButton, className, children, ...rest}) {
+  const buttonClass = classNames(baseButton && 'Button', className);
+
+  return (
+    <button className={buttonClass} {...rest}>
+      {children}
+    </button>
+  );
+}
