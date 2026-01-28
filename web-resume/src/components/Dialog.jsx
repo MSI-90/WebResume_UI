@@ -54,6 +54,7 @@ export default function Dialog(props) {
         <div className="DialogFooter">
           {hasCancel &&
             <Button
+              baseButton={true}
               className="DialogDismiss"
               onClick={() => onAction('dismiss')}>
               Закрыть

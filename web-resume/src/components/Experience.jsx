@@ -1,8 +1,9 @@
 import './Experience.css';
 import {useState, useEffect, useReducer} from "react";
-import classNames from "classnames";
 import PersonalInfo from "../modules/personal";
 import experienceReducer from "../reducers/experienceReducer";
+import ExperienceSavedItem from "./ExperienceSavedItem";
+import ExperienceForm from "./ExperienceForm";
 
 const dateFromPersonalInfo = async () =>
   await new PersonalInfo().getBirthday();
@@ -16,14 +17,18 @@ export default function Experience({formData, formDispatch}) {
   const [expItem, setExpItem] = useState([]);
 
   const initialExperienceItem = {
+    id: null,
     company: '',
     jobTitle: '',
     periodStartMonth: '1',
+    periodStartMonthName: 'Январь',
     periodStartYear: new Date().getFullYear().toString(),
     periodEndMonth: '1',
+    periodEndMonthName: 'Январь',
     periodEndYear: new Date().getFullYear().toString(),
     jobResponsibilities: '',
     jobAchievements: '',
+    workNow: false,
   }
   const [newExperienceItemState, dispatchExperienceItem] = useReducer(experienceReducer, initialExperienceItem);
 
@@ -31,6 +36,10 @@ export default function Experience({formData, formDispatch}) {
   useEffect(() => {
     console.log(newExperienceItemState);
   },[newExperienceItemState])
+
+  useEffect(()=>{
+    console.log(expItem);
+  },[expItem])
 
   useEffect(() => {
     let isMounted = true;
@@ -60,16 +69,49 @@ export default function Experience({formData, formDispatch}) {
   }
 
   const experienceCollection = (experienceItemState) => {
-    let item = [...expItem];
-    item.push(experienceItemState);
-    setExpItem(item);
+    setExpItem(prev => {
+      if (!Array.isArray(prev)) return [];
+
+      // проверим на пустые поля Компания и должность
+      const emptyFields = verifyFields(experienceItemState);
+
+      // добавление
+      if (!experienceItemState.id) {
+        return [
+          ...prev, {
+          ...experienceItemState,
+          ...emptyFields,
+            id: crypto.randomUUID(),
+          },
+        ];
+      }
+
+      // редактирование
+      return prev.map(item =>
+        item.id === experienceItemState.id
+          ? {
+            ...experienceItemState,
+            ...emptyFields}
+          : item);
+    });
+
+    setAsAccordion(true);
+  }
+
+  const verifyFields = (experienceItemState) => {
+    return {
+      company: experienceItemState.company === '' ? 'Наименование организации не указано' : experienceItemState.company,
+      jobTitle: experienceItemState.jobTitle === '' ? 'Должность не указана' : experienceItemState.jobTitle
+    }
   }
 
   const addExperience = () => {
-    newExperienceItemState.company = '';
-    newExperienceItemState.jobTitle = '';
-    newExperienceItemState.jobResponsibilities = '';
-    newExperienceItemState.jobAchievements = '';
+    dispatchExperienceItem({
+      type: 'reset',
+      payload: initialExperienceItem
+    });
+
+    setWorkNow(false);
     setAsAccordion(false);
   }
 
@@ -80,6 +122,44 @@ export default function Experience({formData, formDispatch}) {
       type: 'workNow',
       payload: checked,
     })
+  }
+
+  const editItem = (itemId) => {
+    const result = expItem.find(item => item.id === itemId);
+    if (result){
+      dispatchExperienceItem({
+        type: 'editItem',
+        payload: result,
+      })
+
+      setWorkNow(result.workNow || false);
+      setAsAccordion(false);
+    }
+  }
+
+  const deleteItem = (itemId) => {
+    setExpItem(prev => prev.filter(item => item.id !== itemId));
+  }
+
+  const clearForm = () =>{
+    setWorkNow(false);
+    dispatchExperienceItem({
+      type: 'clearForm',
+      payload: initialExperienceItem,
+    })
+  }
+
+
+  const ExpFormProps = {
+    asAccordion,
+    newExperienceItemState,
+    dispatchExperienceItem,
+    dateList,
+    workNow,
+    changeWorkNow,
+    saveExperience,
+    clearForm,
+    addExperience
   }
 
   if (loading) {
@@ -108,202 +188,15 @@ export default function Experience({formData, formDispatch}) {
           <h3>Опыт работы</h3>
         </div>
 
-        {expItem.length > 0 && (
-          <div>
-            {expItem.map((item, index) => (
-              <p>{item.jobTitle}</p>
-            ))}
-          </div>
+        {expItem?.length > 0 && (
+          <ExperienceSavedItem
+            expItem={expItem}
+            editItem={editItem}
+            deleteItem={deleteItem}
+          />
         )}
 
-        <div className="item-experience-body">
-          <div className={classNames({'accord': asAccordion})}>
-            <div>
-              <label htmlFor="company">Компания</label><br/>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                spellCheck="false"
-                value={newExperienceItemState.company}
-                onChange={(event)=>
-                  dispatchExperienceItem({
-                    type: 'company',
-                    payload: event.target.value
-                  })
-                }
-              />
-            </div>
-            <br/>
-            <div>
-              <label htmlFor="job-title">Занимаемая должность</label><br/>
-              <input
-                type="text"
-                id="job-title"
-                name="jobTitle"
-                spellCheck="false"
-                value={newExperienceItemState.jobTitle}
-                onChange={(event)=>
-                  dispatchExperienceItem({
-                    type: 'jobTitle',
-                    payload: event.target.value
-                  })
-                }
-              />
-            </div>
-            <div className="period">
-              <div className="item-1">
-                <label htmlFor="period-start-month">Начало работы</label><br/>
-                <select
-                  id="period-start-month"
-                  required
-                  name="periodStartMonth"
-                  value={newExperienceItemState.periodStartMonth}
-                  onChange={(event)=>
-                    dispatchExperienceItem({
-                      type: 'periodStartMonth',
-                      payload: event.target.value
-                    })}
-                >
-                  {Array.isArray(dateList?.months) && dateList?.months.length > 0 &&
-                    dateList?.months.map((item) => (
-                      <option key={item.id} value={item.id}>{item.name}</option>
-                    ))
-                  }
-                </select>
-                <select
-                  id="period-start-year"
-                  required
-                  name="periodStartYear"
-                  value={newExperienceItemState.periodStartYear}
-                  onChange={(event)=>
-                    dispatchExperienceItem({
-                      type: 'periodStartYear',
-                      payload: event.target.value
-                    })
-                  }
-                >
-                  {Array.isArray(dateList?.years) && dateList?.years.length > 0 &&
-                    dateList?.years.map((item) => (
-                      <option key={item} value={item}>{item}</option>
-                    ))
-                  }
-                </select>
-              </div>
-              <div className="item-2">
-                <div id="label-end">
-                  <label htmlFor="period-end-month">Окончание</label>
-                </div>
-                <div className="clear"></div>
-                <select
-                  id="period-end-month"
-                  name="periodEndMonth"
-                  disabled={workNow}
-                  value={newExperienceItemState.periodEndMonth}
-                  onChange={(event)=>
-                  dispatchExperienceItem({
-                    type: 'periodEndMonth',
-                    payload: event.target.value
-                  })}
-                >
-                  {Array.isArray(dateList?.months) && dateList?.months.length > 0 &&
-                    dateList?.months.map((item) => (
-                      <option key={item.id} value={item.id}>{item.name}</option>
-                    ))
-                  }
-                </select>
-                <select
-                  id="period-end-year"
-                  name="periodEndYear"
-                  disabled={workNow}
-                  value={newExperienceItemState.periodEndYear}
-                  onChange={(event)=>
-                  dispatchExperienceItem({
-                    type: 'periodEndYear',
-                    payload: event.target.value
-                  })}
-                >
-                  {Array.isArray(dateList?.years) && dateList?.years.length > 0 &&
-                    dateList?.years.map((item) => (
-                      <option key={item} value={item}>{item}</option>
-                    ))
-                  }
-                </select>
-              </div>
-            </div>
-            <div id="job-now-container">
-              <div className="toggle-switch">
-                <input
-                  type="checkbox"
-                  id="job-now"
-                  className="toggle-input"
-                  onChange={(event)=>{
-                    changeWorkNow(event);
-                  }}
-                />
-                <label htmlFor="job-now" className="toggle-label"></label>
-                <span>Работаю сейчас</span>
-              </div>
-            </div>
-            <div id="job-responsibilities-container">
-              <label htmlFor="job-responsibilities">Должностные обязанности на занимаемой должности</label>
-              <textarea
-                spellCheck="false"
-                id="job-responsibilities"
-                name="jobResponsibilities"
-                value={newExperienceItemState.jobResponsibilities}
-                onChange={(event)=>
-                  dispatchExperienceItem({
-                    type: 'jobResponsibilities',
-                    payload: event.target.value
-                  })}
-                ></textarea>
-            </div>
-            <div id="job-achievements-container">
-              <label htmlFor="job-achievements">Достижения</label>
-              <textarea
-                spellCheck="false"
-                id="job-achievements"
-                name="jobAchievements"
-                value={newExperienceItemState.jobAchievements}
-                onChange={(event) =>
-                dispatchExperienceItem({
-                  type: 'jobAchievements',
-                  payload: event.target.value
-                })}
-              >
-              </textarea>
-            </div>
-            <div className="button-group">
-              <button
-                type="button"
-                className="save-button"
-                onClick={() => {saveExperience()}}
-              >
-                Сохранить
-              </button>
-              <button
-                type={"button"}
-                className="remove-button"
-                onClick={()=> setAsAccordion(true)}
-              >
-                Удалить
-              </button>
-            </div>
-
-          </div>
-          <div className="add-experience">
-            <button
-              type={"button"}
-              className="add-button"
-              onClick={(event)=>{
-                addExperience();
-              }}
-            >
-              Добавить
-            </button>
-          </div>
-        </div>
+        <ExperienceForm {...ExpFormProps} />
       </div>
     </>
   )

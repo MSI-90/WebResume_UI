@@ -8,16 +8,18 @@ export default function experienceReducer(state = {}, action) {
     case 'jobTitle':
       newState.jobTitle = action.payload;
       return newState;
-    case 'periodStartMonth':
-      newState.periodStartMonth = action.payload;
+    case 'period-start-month':
+      newState.periodStartMonth = action.payload.number;
+      newState.periodStartMonthName = action.payload.name;
       return newState;
-    case 'periodStartYear':
+    case 'period-start-year':
       newState.periodStartYear = action.payload;
       return newState;
-    case 'periodEndMonth':
-      newState.periodEndMonth = action.payload;
+    case 'period-end-month':
+      newState.periodEndMonth = action.payload.number;
+      newState.periodEndMonthName = action.payload.name;
       return newState;
-    case 'periodEndYear':
+    case 'period-end-year':
       newState.periodEndYear = action.payload;
       return newState;
     case 'jobResponsibilities':
@@ -28,6 +30,17 @@ export default function experienceReducer(state = {}, action) {
       return newState;
     case 'workNow':
       newState.workNow = action.payload;
+      newState.periodEndMonthName = 'наст.'
+      newState.periodEndYear = 'вр.';
+      return newState;
+    case 'editItem':
+      newState = {...action.payload};
+      return newState;
+    case 'reset':
+      newState = action.payload;
+      return newState;
+    case 'clearForm':
+      newState = action.payload;
       return newState;
     default:
       return state;

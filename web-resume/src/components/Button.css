@@ -19,3 +19,43 @@
 .Button:hover {
     transform: scale(1.05);
 }
+
+/* Контейнер кнопок */
+.experience-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Базовый стиль кнопок */
+.experience-actions button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.15s ease, color 0.15s ease, border 0.15s ease;
+}
+
+/* Удалить — мягкая красная кнопка */
+.experience-actions .delete-btn {
+    background: #ffe5e5;
+    color: #b12704;
+    border: 1px solid #f5c2c2;
+}
+
+.experience-actions .delete-btn:hover {
+    background: #fdd7d7;
+    border-color: #e8b1b1;
+}
+
+/* Редактировать — фирменная жёлтая кнопка Amazon */
+.experience-actions .edit-btn {
+    background: #ffd814;
+    color: #0f1111;
+    border: 1px solid #fcd200;
+}
+
+.experience-actions .edit-btn:hover {
+    background: #f7ca00;
+    border-color: #f2c200;
+}
